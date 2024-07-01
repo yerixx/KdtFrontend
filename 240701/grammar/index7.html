@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #222;
+        color: #fff;
+      }
+      .items {
+        display: flex;
+        gap: 20px;
+        .item {
+          width: 340px;
+          height: 250px;
+          padding: 10px;
+          text-align: center;
+          font-size: 18px;
+          border-radius: 10px 10px 0 0;
+          position: relative;
+          .front,
+          .back {
+            position: absolute;
+            top: 0;
+            transition: all 0.5s;
+          }
+          .front {
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            padding-top: 20px;
+            text-align: center;
+            background-color: #333;
+            border-radius: 10px;
+          }
+          .back {
+            background-color: #fff;
+            width: 100%;
+            height: 100%;
+            padding: 16px;
+            padding-top: 24px;
+            color: #000;
+            border-radius: 12px;
+            a {
+              display: inline-block;
+              margin-top: 10px;
+              padding: 5px 16px;
+              border-radius: 20px;
+              color: #fff;
+              background-color: yellowgreen;
+              transition: all 0.3s;
+              &:hover {
+                background-color: #000;
+              }
+            }
+          }
+          &:hover .front {
+            top: -50%;
+            border-radius: 20px 20px 0 0;
+          }
+          &:hover .back {
+            top: 50%;
+            border-radius: 0 0 20px 20px;
+          }
+          &:hover img {
+            animation: ani 1s linear infinite;
+          }
+        }
+      }
+      /* 애니메이션 스타일 적용 */
+      /* 변수명 넣고 0일때 50일때 100일때 속성 적용 */
+      @keyframes ani {
+        0% {
+          transform: scale(0.8);
+        }
+        50% {
+          transform: scale(1);
+        }
+        100% {
+          transform: scale(0.8);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="items">
+      <div class="item">
+        <div class="front">
+          <img src="./img7/space-01.png" alt="space01" />
+          <h2>Mars</h2>
+        </div>
+        <div class="back">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel ut
+            dolorem sequi tempora quasi obcaecati, voluptatum ratione
+            voluptatibus dolor alias, eum rerum tenetur incidunt. Expedita
+            architecto animi et aspernatur quas.
+          </p>
+          <a href="#none">Read More</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="front">
+          <img src="./img7/space-02.png" alt="space02" />
+          <h2>Jupiter</h2>
+        </div>
+        <div class="back">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel ut
+            dolorem sequi tempora quasi obcaecati, voluptatum ratione
+            voluptatibus dolor alias, eum rerum tenetur incidunt. Expedita
+            architecto animi et aspernatur quas.
+          </p>
+          <a href="#none">Read More</a>
+        </div>
+      </div>
+      <div class="item">
+        <div class="front">
+          <img src="./img7/space-03.png" alt="space03" />
+          <h2>Saturns</h2>
+        </div>
+        <div class="back">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel ut
+            dolorem sequi tempora quasi obcaecati, voluptatum ratione
+            voluptatibus dolor alias, eum rerum tenetur incidunt. Expedita
+            architecto animi et aspernatur quas.
+          </p>
+          <a href="#none">Read More</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
