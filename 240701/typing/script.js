@@ -19,13 +19,17 @@ const typing = () => {
   // += 복합 대입 연산자
   // text.innerHTML 에 txt 을 하나씩 넣어줘
   text.innerHTML += txt === "\n" ? "<br/>" : txt;
+  setTimeout(typing, 200);
   // content.length = 콘텐츠 총 개수
   // 문자열 초과하는 순간 리셋 시키도 다시 찾아오게 하는 함수
   if (i > content.length) {
     text.textContent = "";
     i = 0;
+  } else {
+    curser.style.animation = "none";
+    curser.style.displan = "none";
   }
 };
 // setInterval =  특정주기에 맞춰서 실행해주는 함수
 // 0.25초에 한번씩 typimg 함수가 실행하게 해줘
-setInterval(typing, 250);
+typing();

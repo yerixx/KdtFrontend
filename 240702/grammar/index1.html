@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>형태구조선택자 문법</title>
+  </head>
+  <style>
+    /* 형태가 다 다른 속성 중 마지막 값 불러오기 */
+    h1:last-of-type {
+      color: rgb(255, 0, 128);
+    }
+    h2:first-of-type {
+      background: #b2ff69;
+    }
+    h3:last-of-type {
+      background: #555;
+    }
+  </style>
+  <body>
+    <main class="container">
+      <h1>header-1</h1>
+      <h2>header-2</h2>
+      <h3>header-3</h3>
+      <h3>header-3</h3>
+      <h2>header-2</h2>
+      <h1>header-1</h1>
+    </main>
+  </body>
+</html>
