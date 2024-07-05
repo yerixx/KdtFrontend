@@ -84,7 +84,11 @@
   #main_aside {
     width: 200px;
     cursor: pointer;
+    div.tab_item {
+      display: none;
+    }
     input[type="radio"] {
+      cursor: pointer;
       display: none;
       &:first-of-type:checked ~ div:first-of-type {
         display: block;
@@ -92,9 +96,63 @@
       &:last-of-type:checked ~ div:last-of-type {
         display: block;
       }
-    }
-    div {
-      display: none;
+      /* 첫번째 인풋 태그가 체크가 되어있다면  */
+      &:first-of-type:checked ~ .buttons > label:first-of-type {
+        background: #fff;
+        color: #000;
+      }
+      /* 마지막 인풋 태그가 체크가 되어있다면  */
+      &:last-of-type:checked ~ .buttons > label:last-of-type {
+        background: #fff;
+        color: #000;
+      }
     }
   }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  label {
+    width: 100%;
+    height: 30px;
+    line-height: 26px;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    border: 1px solid #000;
+  }
+}
+div.tab_item {
+  display: none;
+  .item {
+    padding: 10px;
+    border: 1px solid #000;
+    border-top: none;
+    a {
+      display: flex;
+      gap: 10px;
+      strong {
+        /* 기본속성이 인라인이라서 display 바꿔줘야 width 속성 먹음 */
+        display: inline-block;
+        width: 120px;
+        /* 하위 세개는 세트★ */
+        overflow: hidden;
+        /* wrap의 줄바꿈 속성 못받게 함  */
+        white-space: nowrap;
+        /* 말 줄임표~ 부모요소 너비 설정 해야 됨 */
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+/* footer */
+
+#main_footer {
+  width: 960px;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #000;
 }
