@@ -7,6 +7,7 @@
 #app_container {
   width: 100%;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 /* header */
@@ -148,7 +149,6 @@
   gap: 34px;
   font-size: 18px;
   span {
-    /*.search_hashtag span{ 이렇게 뽑아도 되됨. 네스팅 기능이 있어서 되는 것임*/
     background: #f3f3f3;
     padding: 10px 20px;
     border-radius: 10px;

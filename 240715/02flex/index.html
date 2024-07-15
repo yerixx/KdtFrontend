@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 1. JQuery를 slick 앞에 써야함 -->
+    <script
+      type="text/javascript"
+      src="//code.jquery.com/jquery-1.11.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//code.jquery.com/jquery-migrate-1.2.1.min.js"
+    ></script>
+    <!-- 2. slick slider css부터. -->
+    <link rel="stylesheet" href="./slick/slick.css" />
+    <link rel="stylesheet" href="./slick/slick-theme.css" />
+    <script src="./slick/slick.min.js"></script>
+    <!-- 3. fontawsome -->
+    <script
+      src="https://kit.fontawesome.com/44357f99e0.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- 4. custom css & js -->
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+    <title>flex 반응형 웹사이트</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="banner">
+          <ul class="lnb">
+            <li>
+              <a href="#none"><em>for</em> member</a>
+            </li>
+            <li>
+              <a href="#none"><em>for</em> clients</a>
+            </li>
+            <li>
+              <a href="#none"><em>for</em> inquires</a>
+            </li>
+          </ul>
+        </div>
+        <nav>
+          <div class="logo">
+            <a href="#none">
+              <img src="./img/logo.png" alt="logo" />
+            </a>
+          </div>
+          <ul class="gnb">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#ranking">RANKING</a></li>
+            <li><a href="#testimonail">TESTMONAIL</a></li>
+            <li><a href="#blog">BLOG</a></li>
+          </ul>
+        </nav>
+        <div class="trigger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </header>
+      <main class="intro">
+        <div class="inner">
+          <div class="heading">
+            <h1>The World's Best Cities</h1>
+            <p>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. At
+              tempore voluptate dolorem voluptatem beatae quidemdolor sit amet
+              consectetur adipisicing elit.
+            </p>
+          </div>
+        </div>
+      </main>
+
+      <section id="about" class="about">
+        <!-- class inner 값으로 1300 -->
+        <div class="inner">
+          <div class="about_content">
+            <div class="desc">
+              <h2>About Best Cites in thr World</h2>
+              <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non,
+                sit. Nam quasi, pariatur explicabo aliquam vel tempora? Facere
+                accusamus dolorem ad eaque natus, eligendi molestias. Alias
+                laudantium expedita dicta impedit?
+                <br />
+                <br />
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam,
+                enim id dolorem cum sint laboriosam necessitatibus blanditiis.
+                Necessitatibus dolores temporibus illo corporis iusto dolorum
+                quisquam facilis, repellat esse omnis aperiam?
+              </p>
+              <a href="#none">Visit the place information</a>
+            </div>
+            <div class="photo">
+              <img src="./img/about-img-01.jpg" alt="about01" />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="ranking" class="ranking"></section>
+      <section id="testimonail" class="testimonail"></section>
+      <section class="callaction"></section>
+      <section id="blog" class="blog"></section>
+      <section class="fastival"></section>
+      <footer></footer>
+    </div>
+    <a class="gototop" href="#">
+      <i class="fa-solid fa-chevron-up"></i>
+    </a>
+  </body>
+</html>

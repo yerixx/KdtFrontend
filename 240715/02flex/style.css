@@ -1,0 +1,144 @@
+@import url("./reset.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  height: 2000px;
+  background: #ddd;
+}
+
+/* 공통으로 처리가능한 기준값 설정 */
+.inner {
+  width: 1300px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+  .banner {
+    height: 40px;
+    background: #000;
+    transition: all 0.5s;
+    .lnb {
+      display: flex;
+      /* 높이가 정의가 안되면 안먹음 */
+      align-items: center;
+      height: 40px;
+      justify-content: flex-end;
+      a {
+        color: #ddd;
+        margin-right: 30px;
+        em {
+          color: #bbb;
+        }
+      }
+    }
+  }
+  nav {
+    width: 1300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px auto 0;
+    gap: 30px;
+    .gnb {
+      display: flex;
+      gap: 25px;
+      li {
+        a {
+          color: #fff;
+          transition: all 0.3s;
+          &:hover {
+            color: crimson;
+          }
+        }
+      }
+    }
+  }
+  .trigger {
+    display: none;
+  }
+  /*  <header class="active"> 이렇게 주면 확인 가능 */
+  &.active {
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    .gnb li a {
+      color: #000;
+    }
+    .banner {
+      height: 0;
+      /* 텍스트까지 사라짐 */
+      overflow: hidden;
+    }
+    nav {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+/* intro */
+.intro {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: url("./img/intro.jpg") center/cover no-repeat;
+  .heading {
+    text-align: center;
+    color: #fff;
+    h1 {
+      font-size: 70px;
+      margin-bottom: 40px;
+    }
+    p {
+      font-size: 22px;
+      line-height: 1.5rem;
+      /* p 태그 width값 대신 사용*/
+      padding: 0 150px;
+    }
+  }
+}
+
+/* about */
+.about_content {
+  display: flex;
+  padding: 150px 0;
+  div {
+    padding: 30px;
+    &:first-child {
+      flex: 3;
+      text-align: center;
+      h2 {
+        font-size: 30px;
+        margin-bottom: 30px;
+      }
+      p {
+        font-size: 1rem;
+        line-height: 1.7rem;
+      }
+      a {
+        color: crimson;
+        font-weight: bold;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    &:last-child {
+      display: flex;
+      /* flex grow로 비율 정리 */
+      flex: 2;
+      img {
+        width: 100%;
+        /* 중첩 적용 가능 */
+        border-radius: 40% 60% 65% 35% / 40% 45% 55% 60%;
+      }
+    }
+  }
+}
