@@ -1,0 +1,15 @@
+.frame {
+  div {
+    border: 3px solid #000;
+    margin: 5px;
+    padding: 5px;
+  }
+}
+// 1부터 9까지의 숫자를 변수 i 에 넣겠다
+@for $i from 1 through 9 {
+  .frame {
+    div:nth-child(#{$i}) {
+      width: 50px * $i;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #222;
+}
+body .checkbox {
+  display: none;
+}
+body .icon {
+  display: flex;
+  gap: 20px;
+}
+body .icon i {
+  box-shadow: 0 0 100px #333;
+  font-size: 50px;
+  padding: 20px;
+  border-radius: 20px;
+  color: #fff;
+  background: #333;
+  border: 1px solid #444;
+}
