@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="tab-inner">
+      <!-- input (숨길것임)따로 빼서 1클릭하면 tab1이 변경되게 해야함 -->
+      <input type="radio" name="tabmenu" id="tab1" checked />
+      <input type="radio" name="tabmenu" id="tab2" />
+      <input type="radio" name="tabmenu" id="tab3" />
+
+      <!-- 그라데이션 필터 용도 -->
+      <div class="tabs">
+        <!-- 함께둬야 포지션 잡는 용도 -->
+        <div class="items">
+          <div>
+            <h1>Portfolie Slide #01</h1>
+          </div>
+          <div>
+            <h1>Portfolie Slide #02</h1>
+          </div>
+          <div>
+            <h1>Portfolie Slide #03</h1>
+          </div>
+        </div>
+      </div>
+      <!-- 라디오는 name값이 통일이 되어야 하나밖에 선택 안됨. id 와 for이 동일 해야함 -->
+      <div class="btn">
+        <label for="tab1">Graphic</label>
+        <label for="tab2">Web Publishing</label>
+        <label for="tab3">Logo & CI</label>
+      </div>
+    </div>
+  </body>
+</html>

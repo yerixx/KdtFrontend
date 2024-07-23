@@ -1,0 +1,29 @@
+// 변수는 하나의 그릇에 값을 하나만 넣을 수 있음
+// $font-focus: crimson;
+
+// 이터러블객체
+$color: (
+  font-promary: #2d3436,
+  font-secondary: #636e72,
+  font-focus: #d63031,
+  bg-primary: #dfe6e9,
+  bg-secondary: #b2bec3,
+);
+
+$headline-font: (
+  large: 45px,
+  medium: 32px,
+  small: 22px,
+);
+
+body {
+  background: map-get($color, bg-primary);
+  .frame {
+    h1 {
+      color: map-get($color, font-focus);
+    }
+    p {
+      font-size: map-get($headline-font, medium);
+    }
+  }
+}

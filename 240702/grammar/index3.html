@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 숫자 자동 증가 */
+      p {
+        counter-increment: rint /*이름 정의해야함*/;
+      }
+      p::before {
+        content: counter(rint) ".";
+      }
+
+      p::after {
+        content: " - " attr(data-page) "page";
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Lorem Ipsum</h1>
+    <p data-page="52">
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quia dicta,
+      possimus labore natus eos reiciendis quis deserunt fuga, tempore officiis
+      inventore aliquid fugit velit sequi iure optio dolor sunt fugiat.
+    </p>
+    <p data-page="273">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sit autem
+      eveniet, mollitia sequi amet accusamus ad perspiciatis fuga illo minus
+      odio dolorem! Odit, provident similique? Porro voluptatibus praesentium ut
+      dolor? Ex nulla non, sunt dicta excepturi nemo, atque omnis voluptatem,
+      odit ullam maxime repellat? Et veniam ut, nesciunt ab corporis optio!
+      Facere repellendus nemo, a soluta rerum amet minima blanditiis?
+      Repudiandae rerum repellendus debitis quisquam possimus dolorum nam neque
+      est, ipsa eveniet aspernatur impedit. Dignissimos quis obcaecati, tempora
+      minima exercitationem adipisci ducimus mollitia laborum assumenda, dolores
+      et praesentium quidem asperiores. Doloremque harum earum in. Voluptatibus
+      quidem blanditiis adipisci, ipsum aut, obcaecati sequi ea ex sed dolores
+      ipsam iste consequatur accusantium earum ducimus tenetur quis deserunt
+      cupiditate. Esse cum est cupiditate.
+    </p>
+  </body>
+</html>
