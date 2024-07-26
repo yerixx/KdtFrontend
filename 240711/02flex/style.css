@@ -1,0 +1,66 @@
+/* reset */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+body {
+  background: #eee;
+  header {
+    display: flex;
+    /* height 고정값 주는 것 보다 padding값 주는게 좋음 */
+    padding: 20px;
+    background: #fff;
+    /* 포폴에 넣기 */
+    flex-wrap: wrap;
+    .logo {
+      flex: 1;
+    }
+    .gnb {
+      flex: 6;
+      ul {
+        display: flex;
+        justify-content: space-evenly;
+      }
+    }
+    .search {
+      flex: 1;
+    }
+  }
+}
+/* 포폴에 수정해보기 */
+@media screen and (max-width: 780px) {
+  body {
+    header {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      .gnb {
+        ul {
+          gap: 20px;
+        }
+      }
+      .search {
+        input[type="search"] {
+          padding: 8px;
+          border: none;
+          border-bottom: 1px solid #000;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+}

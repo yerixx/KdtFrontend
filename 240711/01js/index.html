@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let name = 0;
+      let age = 0;
+      let currentYear = 2024;
+      let birthYear = 0;
+
+      name = prompt("이름을 입력해주세요", "홍길동");
+      birthYear = prompt("태어난 년도를 입력해주세요 (yyyy)");
+      age = currentYear - birthYear;
+
+      document.write("<b><strong>" + name + "님," + "</strong></b> 환영합니다");
+      document.write(currentYear + "년, 현재\n");
+      document.write(name + "님의 나이는" + age + "입니다");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: grid;
+  /* 1.몇 열 쓸건지 */
+  grid-template-columns: 250px 1fr 250px;
+  /* 2.몇 행 쓸건지 */
+  grid-template-rows: 100px 600px 1fr 100px;
+  /* 1.2. 축약형 */
+  /* grid: 100px 600px 1fr 100px / 250px 1fr 250px; */
+
+  grid-template-areas: "header header header" "welcome welcome welcome" "banner main aside" "footer footer footer";
+
+  /* div 안에 넣고 div 공통 css 는 1번에 주고  &.header ~~ */
+  div {
+    border: 1px solid #000;
+    padding: 20px;
+    font-size: 20px;
+    /* 수직수평 센터 주기 위해 display: grid  */
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    &.header {
+      grid-area: header;
+      background: darkkhaki;
+    }
+    &.welcome {
+      grid-area: welcome;
+      background: url("./img/welcome-image.jpg") center/cover no-repeat;
+    }
+    &.banner {
+      grid-area: banner;
+    }
+    &.main {
+      grid-area: main;
+      /* main text만 왼쪽 정렬 시키기!!! */
+      justify-items: start;
+    }
+    &.aside {
+      grid-area: aside;
+    }
+    &.footer {
+      grid-area: footer;
+      background: darkkhaki;
+    }
+  }
+}

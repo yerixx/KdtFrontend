@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  #container {
+    #toggle-box {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      button {
+        padding: 5px 10px;
+        border: 1px solid #222;
+        border-radius: 5px;
+      }
+    }
+    #contents {
+      width: 300px;
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      p {
+        text-align: center;
+      }
+    }
+  }
+}
+/* btn과 관련된 가상클래스 생성 */
+.dark {
+  background: #000;
+  color: #fff;
+}

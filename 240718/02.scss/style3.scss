@@ -1,0 +1,65 @@
+// variables
+$complete-btn: royalblue;
+$loading-btn: green;
+$error-btn: crimson;
+$notice-btn-hover: #000;
+$notice-btn-fs: 18px;
+
+// reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+// mix-in
+// @mixin 이름정의 {공통된 스타일만 정의}
+@mixin notice-button {
+  width: 150px;
+  padding: 7px;
+  background: #fff;
+  font-size: $notice-btn-fs;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  &.complete:hover {
+    background: $complete-btn;
+    color: #fff;
+    border: 3px solid transparent;
+  }
+  &.loading:hover {
+    background: $loading-btn;
+    color: #fff;
+    border: 3px solid transparent;
+  }
+  &.error:hover {
+    background: $error-btn;
+    color: #fff;
+    border: 3px solid transparent;
+  }
+}
+
+// content
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .btns {
+    button {
+      @include notice-button;
+      &.complete {
+        color: $complete-btn;
+        border: 3px solid $complete-btn;
+      }
+      &.loading {
+        color: $loading-btn;
+        border: 3px solid $loading-btn;
+      }
+      &.error {
+        color: $error-btn;
+        border: 3px solid $error-btn;
+      }
+    }
+  }
+}

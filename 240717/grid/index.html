@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>grid</title>
+    <style>
+      .parent {
+        border: 5px solid #000;
+        display: grid;
+        /* grid 단독으로 주면 안먹음 몇행 몇열을 할지 염두하고 적용해야함 1fr 1fr(프렉션) = 1/2 */
+        /* 100px 고정 .  */
+        /* grid-template-columns: 100px 1fr 2fr; */
+        /* 첫번째 행 100px 두번째 행 200px */
+        /* grid-template-rows: 100px 200px; */
+        /* 축약버전 */
+        grid: 100px 200px /1fr 1fr 1fr; /*행 / 열*/
+        & div {
+          background: yellowgreen;
+          border: 1px solid #fff;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </div>
+  </body>
+</html>

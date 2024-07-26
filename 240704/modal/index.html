@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modal</title>
+    <!-- fontawsome -->
+    <script
+      src="https://kit.fontawesome.com/44357f99e0.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- custom css & JS -->
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+  </head>
+  <body>
+    <button id="open">Profile</button>
+    <!-- 모달 inner contents -->
+    <main id="modal_box" class="active">
+      <section id="modal_contents">
+        <h1>My Profile</h1>
+        <span id="close">
+          <i class="fa-solid fa-xmark"></i>
+        </span>
+        <article id="profile">
+          <img src="./img/pf.png" alt="profile" />
+          <ul id="desc">
+            <li class="user">이름 : 도레미</li>
+            <li class="user">이메일 : yerixxz@gmail.com</li>
+            <li class="user">번호 : 010-5508-1689</li>
+          </ul>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>

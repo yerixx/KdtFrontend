@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>시작문자 선택자</title>
+  </head>
+  <style>
+    /* 시작문자 선택자 - 첫번째 문자에만 속성 적용 */
+    p::first-letter {
+      font-size: 3rem;
+    }
+    /* 시작문자 선택자 - 첫번째 행에만 속성 적용 */
+    p::first-line {
+      color: rgb(255, 0, 128);
+    }
+  </style>
+  <body>
+    <h1>Lorem Ipsum</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis a
+      ducimus accusantium provident dolorum rem hic, tempora veniam vel cumque
+      ipsum voluptates consequuntur sapiente eos, quos consequatur amet enim
+      aspernatur.
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis a
+      ducimus accusantium provident dolorum rem hic, tempora veniam vel cumque
+      ipsum voluptates consequuntur sapiente eos, quos consequatur amet enim
+      aspernatur.
+    </p>
+  </body>
+</html>
