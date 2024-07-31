@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="./script4.js"></script>
+    <link rel="stylesheet" href="./style4.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main class="container">
+      <section class="topMenu">
+        <div class="saleImg">
+          <img src="./img/sale.png" alt="saleImg" />
+        </div>
+        <div class="formArea">
+          <form name="priceCalc" action="http://127.0.0.1:5500" method="get">
+            <ul>
+              <li>
+                <label for="price">원래가격</label
+                ><input type="text" name="price" id="price" /> 원
+              </li>
+              <li>
+                <label for="rate">할인율</label
+                ><input type="text" name="rate" id="rate" /> %
+              </li>
+            </ul>
+            <input class="action_btn" type="button" value="할인가격 계산하기" />
+          </form>
+        </div>
+      </section>
+      <section class="bottom_info">
+        <p>
+          <!-- 상품의 원래가격은 10,000원이고 할인율은 10% 입니다<br />
+          1,000원을 절약한 9,000원에 구매하실 수 있습니다 -->
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
