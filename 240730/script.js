@@ -2,7 +2,8 @@
 
 // 섭씨온도 = (화씨온도 fahrenheit - 32) / 1.8
 
-const fah = parseFloat(prompt("화씨온도를 입력해주세요", "ex.45"));
-const cel = ((fah - 32) / 1.8).toFixed(2);
+const Fahr = parseFloat(prompt("화씨온도를 입력해주세요"));
 
-alert(`화씨온도 ${fah}도는 섭씨온도 ${cel}입니다`);
+const tem = ((Fahr - 32) / 1.8).toFixed(2);
+
+alert(`${Fahr} 의 섭씨온도는 ${tem} 입니다`);

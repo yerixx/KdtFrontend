@@ -19,9 +19,11 @@
 // result = x % y;
 // console.log(result);
 
-// let str = "<table border = '1'>";
-// str = str + "</table>";
-// str += "</table>";
+let str = "<table border = '1'>";
+str = str + "</table>";
+str += "</table>";
+
+document.write = str;
 
 // const x = 10;
 

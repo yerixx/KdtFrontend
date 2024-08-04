@@ -4,13 +4,21 @@
 //짝수는 반드시 2로 나누어짐
 //반드시 삼항조건연산자로
 
-let userNumber = Number(prompt("숫자를 입력해주세요"));
-if (userNumber !== null) {
-  userNumber = parseInt(userNumber);
-  userNumber % 2 === 0
-    ? alert(`${userNumber} : 짝수`)
-    : alert(`${userNumber} : 홀수`);
-}
+// let userNumber = Number(prompt("숫자를 입력해주세요"));
+// if (userNumber !== null) {
+//   // userNumber = parseInt(userNumber);
+//   userNumber % 2 === 0
+//     ? alert(`${userNumber} : 짝수`)
+//     : alert(`${userNumber} : 홀수`);
+// }
 
 // let nums = number % 2 === 0 ? "짝수" : "홀수";
 // alert(nums);
+
+const num = Number(prompt("0 이상의 숫자를 입력해주세요"));
+
+if (num !== null && num !== 0) {
+  num % 2 === 0 ? alert(`${num}은 짝수`) : alert(`${num}은 홀수`);
+} else {
+  alert("숫자를 잘못 입력하셨습니다");
+}
