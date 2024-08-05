@@ -27,4 +27,29 @@ select.addEventListener("change", function () {
   alert(`${selectedText}를 선택했습니다. 가격은 5000원 입니다.`);
 });
 
-const checkBox = document.querySelector("input[name='alarm']:checked");
+const radioBox = document.querySelectorAll("input[name='userAge']");
+// 콘솔로 찾고
+// console.log(radioBox);
+//해당 요소에 반복문을 사용해서, 각각의 아이템에 이벤트를 적용해야함
+radioBox.forEach((item) => {
+  item.addEventListener("change", (e) => {
+    // target = 이벤트가 발생된 지점에서 찾아온다
+    const target = e.target;
+    // console.log(target.value);
+    if (target.checked) {
+      alert(`당신의 연령은 ${target.value}대 입니다`);
+    }
+  });
+});
+
+// const checkBox = document.querySelector("input[name='alarm']:checked");
+const checkBox = document.querySelectorAll("input[name='alarm']");
+// console.log(checkBox);
+checkBox.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    const target = e.target;
+    if (target.checked) {
+      alert(`당신의 관심은 ${target.value}입니다`);
+    }
+  });
+});
