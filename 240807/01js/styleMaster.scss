@@ -1,0 +1,64 @@
+//reset
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// common
+html {
+  font-size: 16px;
+}
+body {
+  //스크롤x 없애는 방법 1
+  overflow-x: hidden;
+}
+
+// variable
+$item-color: #639;
+$bg-color: #fff;
+
+button {
+  //스크롤x 없애는 방법 2
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px;
+  border: none;
+  background: $item-color;
+  color: $bg-color;
+  font-size: 1.3rem;
+  // display: none;
+  transition: transform 0.3s;
+  &.active {
+    transform: translateX(-165px);
+  }
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: $item-color;
+  color: $bg-color;
+  padding: 3rem;
+  height: 100vh;
+  font-size: 1.3rem;
+  transform: translateX(150%);
+  transition: transform 0.3s;
+
+  li {
+    padding: 1rem 0;
+  }
+  &.active {
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20px;
+  h2 {
+    font-size: 2rem;
+  }
+  #container {
+    position: relative;
+    width: 700px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    .arrow {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      background: #ddd;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      opacity: 0.2;
+      z-index: 100;
+      transition: all 0.3s;
+      cursor: pointer;
+      // 클릭 시 배경 오버레이 시키기 ++
+      &#left {
+        left: 0;
+      }
+      &#right {
+        right: 0;
+      }
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

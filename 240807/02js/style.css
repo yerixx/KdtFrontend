@@ -1,0 +1,47 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+body .star-rating {
+  width: 300px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+  border-radius: 5px;
+  gap: 10px;
+}
+body .star-rating .stars > ul {
+  display: flex;
+  gap: 4px;
+}
+body .star-rating .stars > ul .fa-star {
+  cursor: pointer;
+}
+body .star-rating .stars > ul .fa-star.active {
+  color: yellow;
+}
+body .star-rating .print {
+  display: flex;
+  gap: 10px;
+  color: #fff;
+}

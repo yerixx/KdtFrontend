@@ -1,0 +1,45 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+ul,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  .star-rating {
+    width: 300px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #333;
+    border-radius: 5px;
+    gap: 10px;
+    .stars > ul {
+      display: flex;
+      gap: 4px;
+      .fa-star {
+        cursor: pointer;
+        &.active {
+          color: yellow;
+        }
+      }
+    }
+    .print {
+      display: flex;
+      gap: 10px;
+      color: #fff;
+    }
+  }
+}

@@ -17,6 +17,9 @@ body .content {
   flex-direction: column;
   text-align: center;
 }
+body .content .title {
+  margin: 40px 0;
+}
 body form {
   width: 100%;
   display: flex;
