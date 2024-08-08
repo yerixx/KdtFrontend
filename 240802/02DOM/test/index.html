@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./script.js"></script>
+    <title>Document</title>
+    <style>
+      ul,
+      li {
+        list-style: none;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        .contents {
+          display: flex;
+          align-items: center;
+          padding: 30px;
+          border-radius: 20px;
+          border: 1px solid #000;
+          .img {
+            width: 80px;
+            height: 80px;
+            background-color: gray;
+            &.active {
+              background-color: yellow;
+            }
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>My Profile</h1>
+      <div class="contents">
+        <div class="img"></div>
+        <div class="content">
+          <ul>
+            <li>이름 : 아이유</li>
+            <li>주소 : 서울시</li>
+            <li>연락처 : 알수없음</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
