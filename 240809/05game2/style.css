@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 100vh;
+}
+body .container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body .container .block {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+body .button {
+  display: flex;
+  gap: 18px;
+}
+body .button button {
+  width: 70px;
+  height: 70px;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+body .button button.red {
+  background: #e74c3c;
+}
+body .button button.blue {
+  background: #3498db;
+}
+body .button button.green {
+  background: #1abc9c;
+}
+body .result {
+  font-size: 1.7rem;
+  font-weight: bold;
+}

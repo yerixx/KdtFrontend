@@ -3,8 +3,90 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="./script1.js"></script>
+    <script defer src="./script1.js"></script>
     <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul,
+      li {
+        list-style: none;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        .container {
+          width: 500px;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border: 1px solid #000;
+          border-radius: 20px;
+          .title {
+            text-align: center;
+          }
+          .count {
+            width: 100%;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            background: gray;
+            border-radius: 8px;
+            color: #fff;
+            margin: 10px 0;
+          }
+          .dday {
+            width: 100%;
+            li {
+              display: flex;
+              justify-content: space-around;
+              font-size: 1.2rem;
+              border-bottom: 1px solid #999;
+              padding: 20px 0;
+              .accent {
+                color: crimson;
+                font-weight: bold;
+              }
+            }
+          }
+        }
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <div class="title">
+        <h3>우리 만난지...</h3>
+        <h1 class="accentday">❤️두근두근❤️</h1>
+      </div>
+      <div class="count">기념일 계산기</div>
+      <div class="dday">
+        <ul>
+          <li>
+            <span class="accent">100일</span>
+            <span>언제일까요?</span>
+          </li>
+          <li>
+            <span class="accent">200일</span>
+            <span>언제일까요?</span>
+          </li>
+          <li>
+            <span class="accent">365일</span>
+            <span>언제일까요?</span>
+          </li>
+          <li>
+            <span class="accent">500일</span>
+            <span>언제일까요?</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>

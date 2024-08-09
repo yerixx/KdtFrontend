@@ -56,27 +56,16 @@ const userdate = prompt("처음 커플이 된 날짜를 입력해주세요!", "2
 const accentDate = document.querySelector(".accentday");
 
 const now = new Date();
-const firstDay = new Date(userdate);
+const FirstDay = userdate;
 
 const toNow = now.getTime();
-const toFirst = firstDay.getTime();
+const toFirst = FirstDay.getTime();
 
 const diffDate = toNow - toFirst;
+const resultDate = Math.round(diffDate);
 
-const resultDate = Math.round(diffDate / (24 * 60 * 60 * 1000));
-// console.log(resultDate);
+accentDate.innetText = `${resultDate}일 이에용`;
 
-accentDate.innerHTML = `❤️${resultDate}일 이에용❤️`;
-
-const calcDate = (days) => {
-  future = toFirst + days * (24 * 60 * 60 * 1000);
-  someday = new Date(future);
-  year = someday.getFullYear();
-  month = someday.getMonth() + 1;
-  date = someday.getDate();
-
-  document.querySelector(`date${days}`).innerText;
-};
 // const calcDate = (days) => {
 //   future = toFirst + days * (24 * 60 * 60 * 1000);
 //   someday = new Date(future);
