@@ -22,13 +22,19 @@
 const calcSum = () => {
   let sum = 0;
   for (let i = 1; i <= 10; i++) {
-    // 이해안됨
     sum += i;
   }
   console.log(`1부터 10까지 더하면 ${sum}`);
 };
 //호출해줘야함
 calcSum();
+
+const calcSums = () => {
+  let sum = 0;
+  for (let i = 1; i <= 10; i++) {
+    sum += i;
+  }
+};
 
 // function sum(a, b) {
 //   const result = a + b;
@@ -70,7 +76,7 @@ calcSum();
 
 // /////////
 
-document.body.innerHTML += `<button id="btn"> Click </button>`;
+// document.body.innerHTML += `<button id="btn"> Click </button>`;
 
 // const button = document.querySelector("#btn");
 
@@ -78,12 +84,39 @@ document.body.innerHTML += `<button id="btn"> Click </button>`;
 //   alert("클릭했습니다");
 // });
 
-document.body.innerHTML += `<button id="btn"> Click </button>`;
+// document.body.innerHTML += `<button id="btn"> Click </button>`;
 
-const button = document.querySelector("#btn");
+// const button = document.querySelector("#btn");
 
-function display() {
-  alert("클릭했습니다");
-}
+// function display() {
+//   alert("클릭했습니다");
+// }
 
-button.addEventListener("click", display);
+// button.addEventListener("click", display);
+
+document.body.innerHTML = `<button id="women">여성</button> <button id="man">남성</button>`;
+
+const women = document.querySelector("#women");
+const man = document.querySelector("#man");
+
+// function womenclick() {
+//   alert(`여성이시군요`);
+// }
+// women.addEventListener("click", womenclick);
+
+// function manclick() {
+//   alert(`남성이시군요`);
+// }
+// man.addEventListener("click", manclick);
+
+// document.querySelectorAll("button").forEach((button) => {
+//   button.addEventListener("click", () => {
+//     alert(button.textContent + "이시군요");
+//   });
+// });
+
+document.querySelectorAll("button").forEach((button) => {
+  button.addEventListener("click", () => {
+    alert(button.textContent + "이시군요");
+  });
+});
