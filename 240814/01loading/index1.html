@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>loading2</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      .loading {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        div {
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          transition: all 0.3;
+        }
+        .A {
+          animation: ani 2s linear infinite;
+          background: crimson;
+        }
+        .B {
+          animation: ani 2s 1s linear infinite;
+
+          background: darkorchid;
+        }
+      }
+    }
+
+    @keyframes ani {
+      0% {
+        top: 0;
+        left: 0;
+      }
+      25% {
+        top: 0;
+        left: calc(100% - 20px);
+      }
+      50% {
+        top: calc(100% - 20px);
+        left: calc(100% - 20px);
+      }
+      75% {
+        top: calc(100% - 20px);
+        left: 0;
+      }
+      100% {
+        top: 0;
+        left: 0;
+      }
+    }
+  </style>
+  <body>
+    <div class="loading">
+      <div class="A"></div>
+      <div class="B"></div>
+    </div>
+  </body>
+</html>
