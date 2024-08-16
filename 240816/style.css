@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("https://p4.wallpaperbetter.com/wallpaper/154/47/615/twitter-social-networks-wallpaper-preview.jpg") top/cover no-repeat;
+}
+
+main {
+  width: 960px;
+  height: 600px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+main #tweetTextArea {
+  width: 100%;
+  height: 80%;
+  resize: none;
+  border: none;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding-left: 10px;
+  font-size: 24px;
+}
+main #tweetTextArea:focus {
+  outline: none;
+}
+main #tweetButton {
+  font-size: 22px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+main #tweetButton:hover {
+  background: #000;
+  color: #fff;
+}

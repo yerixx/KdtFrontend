@@ -29,6 +29,7 @@ a {
   background: url("./contents/outerbox.png") center/cover no-repeat;
 }
 .background .outerbox .wrapper {
+  border: 1px solid #f00;
   display: flex;
   padding: 36px;
 }

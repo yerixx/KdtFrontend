@@ -24,6 +24,8 @@ $size: 14px;
     height: 544px;
     background: url("./contents/outerbox.png") center/cover no-repeat;
     .wrapper {
+      border: 1px solid #f00;
+
       display: flex;
       padding: 36px;
     }
