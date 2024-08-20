@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="./script.js"></script>
+    <title>Array</title>
+    <style>
+      body {
+        background: url("./img/background.jpg") center/cover no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        width: 400px;
+        height: 200px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        #content {
+          width: 350px;
+          display: flex;
+          justify-content: center;
+          padding: 10px 0;
+          color: #fff;
+          background: #000;
+          border-radius: 4px;
+          #userid {
+            width: 200px;
+            &:focus {
+              outline: none;
+              &::placeholder {
+                opacity: 0;
+              }
+            }
+          }
+        }
+        #result {
+          color: #fff;
+          text-align: center;
+          font-size: 2rem;
+          padding: 50px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="container">
+      <div id="content">
+        <form action="http://127.0.0.1" method=" get">
+          <label for="userid">
+            user ID
+            <input
+              type="text"
+              name="userid"
+              id="userid"
+              placeholder="숫자로 된 아이디를 입력해주세요"
+          /></label>
+        </form>
+      </div>
+      <div id="result">유저 검색 결과 없음</div>
+    </main>
+  </body>
+</html>
