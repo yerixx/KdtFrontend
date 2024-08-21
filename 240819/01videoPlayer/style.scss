@@ -79,6 +79,11 @@ body {
           display: flex;
           align-items: center;
           gap: 10px;
+          #fullscreenBtn {
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 0;
+          }
           button {
             width: 40px;
             height: 30px;

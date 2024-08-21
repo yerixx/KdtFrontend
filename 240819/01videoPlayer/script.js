@@ -3,6 +3,8 @@ const video = document.querySelector("video");
 const volumeBar = document.querySelector("input[type='range']");
 const progressCover = document.querySelector(".progress");
 const player = document.querySelector(".player");
+const rateButtons = document.querySelectorAll(".rate");
+const fullButton = document.querySelector("#fullscreenBtn");
 
 const play = () => {
   playButton.innerText = " || ";
@@ -64,6 +66,13 @@ const videoPoint = (e) => {
   video.currentTime = clickedTime;
 };
 
+const setRate = (e) => {
+  const { rate } = e.target.dataset;
+  // console.log(rate);
+  //재생 배속 정의
+  video.playbackRate = rate;
+};
+
 playButton.addEventListener("click", togglePlay);
 video.addEventListener("click", togglePlay);
 video.addEventListener("timeupdate", updateTime);
@@ -71,4 +80,15 @@ video.addEventListener("timeupdate", updateProgress);
 volumeBar.addEventListener("change", setVolume);
 progressCover.addEventListener("click", (e) => {
   videoPoint(e);
+});
+
+rateButtons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    setRate(e);
+  });
+});
+
+//FullScreen
+fullButton.addEventListener("click", () => {
+  video.requestFullscreen();
 });

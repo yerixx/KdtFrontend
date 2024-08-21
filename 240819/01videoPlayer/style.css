@@ -76,6 +76,11 @@ body .player .controls .buttons .menu {
   align-items: center;
   gap: 10px;
 }
+body .player .controls .buttons .menu #fullscreenBtn {
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0;
+}
 body .player .controls .buttons .menu button {
   width: 40px;
   height: 30px;
