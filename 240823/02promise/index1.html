@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="./script1.js"></script>
+    <title>promise</title>
+    <style>
+      #result {
+        font-size: 18px;
+        text-align: center;
+        padding: 10px;
+        &.done {
+          text-decoration: line-through;
+          color: crimson;
+        }
+      }
+      #end {
+        font-size: 18px;
+        &.active {
+          background: #000;
+          padding: 10px;
+          color: #fff;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="result"></div>
+    <div id="end"></div>
+  </body>
+</html>
