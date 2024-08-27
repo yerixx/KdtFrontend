@@ -4,10 +4,11 @@
   box-sizing: border-box;
 }
 
-li,
-ul {
+ul,
+li {
   list-style: none;
 }
+
 a {
   text-decoration: none;
   color: inherit;

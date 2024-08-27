@@ -1,9 +1,10 @@
 @import "./scss/reset.scss";
 @font-face {
   font-family: "youtube";
-  src: url("./font/AnyConv.com__KFOmCnqEu92Fr1Mu4mxPKTU1Kg.otf");
+  src: url("./fonts/AnyConv.com__KFOmCnqEu92Fr1Mu4mxPKTU1Kg.otf");
 }
-// mixin
+
+/* mix-in */
 @mixin btnType {
   display: inline-block;
   padding: 10px 22px;
@@ -17,12 +18,12 @@
   }
 }
 
-// common
+/* common */
 body {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 2000px;
   font-family: "youtube";
   #container {
     width: 390px;
@@ -31,7 +32,8 @@ body {
     position: relative;
   }
 }
-// header
+
+/* header */
 header {
   width: 390px;
   position: fixed;
@@ -42,13 +44,13 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
     background: #000;
+    padding: 0 20px;
     img {
       height: 22px;
     }
     #header_right {
-      width: 50px;
+      width: 54px;
       display: flex;
       justify-content: space-between;
       .fa-solid {
@@ -57,10 +59,11 @@ header {
     }
   }
 }
-// figure
+
+/* figure */
 figure {
   position: fixed;
-  top: 54px;
+  top: 50px;
   z-index: 10;
   width: 390px;
   height: 220px;
@@ -71,7 +74,7 @@ figure {
   }
 }
 
-// main
+/* main */
 main {
   position: absolute;
   top: 275px;
@@ -79,12 +82,12 @@ main {
   .title {
     margin-top: 10px;
     padding: 20px 12px 0;
-    width: 100%;
-    height: 310px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 18px;
+    width: 100%;
+    height: 310px;
     .heading {
       h3 {
         font-size: 18px;
@@ -94,7 +97,7 @@ main {
         display: flex;
         gap: 8px;
         span {
-          font: normal 14px/1rem "youtube";
+          font: normal 14px/1 "youtube";
           color: #9f9f9f;
         }
       }
@@ -106,25 +109,22 @@ main {
       .profile {
         font-weight: bold;
         display: flex;
-        gap: 10px;
-        height: 100%;
         align-items: center;
+        gap: 10px;
         img {
           width: 35px;
           border-radius: 50%;
         }
         span {
           color: #9f9f9f;
+          font-size: 13px;
+          font-weight: normal;
         }
       }
       .middle_btn {
         span {
           @include btnType;
         }
-      }
-      .subinfo {
-        display: flex;
-        justify-content: space-between;
       }
     }
     .subinfo {
@@ -139,10 +139,10 @@ main {
       }
     }
     .review {
-      background-color: #f0f0f0;
-      padding: 10px;
-      border-radius: 6px;
+      background: #f0f0f0;
       margin-bottom: 14px;
+      padding: 12px;
+      border-radius: 10px;
       .review_title {
         margin-bottom: 10px;
         span:last-child {
@@ -152,55 +152,54 @@ main {
       }
       .review_content {
         display: flex;
+        gap: 8px;
         align-items: center;
-        gap: 10px;
-        padding: 10px;
         img {
           width: 30px;
           border-radius: 50%;
         }
         p {
-          font-size: 12px;
+          font-size: 11px;
         }
       }
     }
   }
-  //******
   .hashlist {
     position: sticky;
-    top: 266px;
+    top: 268px;
     width: 390px;
     background: #fff;
-    padding: 20px 0;
+    padding: 10px 0;
     overflow: hidden;
     opacity: 0;
     // display: none;
     transition: all 1s;
     &.active {
       opacity: 1;
+      // display: block;
     }
     .hashcontent {
-      width: 586px;
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 14px 0;
-      transform: translate(0, 0);
+      gap: 12px;
       background: #fff;
-      overflow: hidden;
+      width: 586px;
+      // height: 40px;
+      // line-height: 40px;
+      padding: 0 14px;
+      transform: translate(0, 0);
       li {
+        padding-top: 5px;
         a {
           display: inline-block;
           background: #f0f0f0;
           width: auto;
-          font-size: 14px;
+          font-size: 13px;
           padding: 6px 10px;
           border-radius: 8px;
           overflow: hidden;
-          // 해당컨텐츠 보호해제...
           white-space: nowrap;
         }
-        // 참고!!!!
         &:first-child a {
           background: #000;
           color: #fff;
@@ -216,7 +215,7 @@ main {
     .adimg {
       width: 100%;
       height: 379px;
-      background: url("./img/ad01.jpg") center/cover no-repeat;
+      background: url(./imgs/ad01.jpg);
     }
     .adtitle {
       width: 100%;
@@ -228,11 +227,9 @@ main {
     }
     .adinfo {
       display: flex;
-      padding: 14px 10px;
       gap: 16px;
+      padding: 14px 10px;
       .fa-facebook {
-        display: flex;
-        // align-items: center;
         font-size: 40px;
         color: #1a76f5;
       }
@@ -241,7 +238,6 @@ main {
         span {
           display: block;
           &:first-child {
-            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -249,7 +245,6 @@ main {
           &:nth-child(2) {
             margin: 6px 0;
             color: #9f9f9f;
-            font-size: 14px;
           }
           &:last-child {
             font-size: 14px;
