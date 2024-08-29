@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="./script1.js"></script>
+    <title>cursor</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: url("https://demo.mangboard.com/wp-content/uploads/mangboard/2020/02/17/F3130_P1000803_1.jpg")
+          center/cover no-repeat;
+        height: 300vh;
+        h1 {
+          font-size: 30px;
+          padding: 60px;
+        }
+        .box {
+          width: 200px;
+          height: 200px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate((-50%, -50%));
+          img {
+            width: 100%;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1></h1>
+    <div class="box">
+      <img src="./img/butterfly.gif" alt="butterfly" />
+    </div>
+  </body>
+</html>
