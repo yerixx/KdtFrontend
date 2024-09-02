@@ -2,10 +2,8 @@ const form = document.querySelector("form");
 const todoItem = document.querySelector("#todoItem");
 const todos = document.querySelector(".todos");
 
-
 const getLocal = () => {
   let todosContainer;
-
   //값을 찾아오는 역할
   //찾아올 값이 없으면 배열로 만들어줘
   if (localStorage.getItem("todos") === null) todosContainer = [];
@@ -59,7 +57,6 @@ const addTodo = (e) => {
   if (todoItem.value !== "") {
     const newLi = document.createElement("li");
     newLi.className = "todo";
-    // newLi.classList.add("todo");
 
     const newSpan = document.createElement("span");
     newSpan.className = "todoContent";
@@ -81,7 +78,6 @@ const addTodo = (e) => {
   }
 };
 
-
 //localstoreage에서 배열 삭제하는 부분
 const removeLocal = (todo) => {
   let todosItem;
@@ -94,7 +90,6 @@ const removeLocal = (todo) => {
   todosItem.splice(index, 1);
   localStorage.setItem("todos", JSON.stringify(todosItem));
 };
-
 
 //완료버튼의 이벤트핸들러
 const manageTodo = (e) => {
