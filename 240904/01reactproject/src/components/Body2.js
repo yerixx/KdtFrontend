@@ -1,79 +1,80 @@
 import styled from "styled-components";
-import { React, useState } from "react";
+
+import React, { useState } from 'react'
 
 export const Wrapper = styled.div`
-  width: 500px;
-  height: 500px;
-  background-color: yellowgreen;
-  color: #fff;
-  display: flex;
+  width: 400px;
+  height:400px;
+  background:yellowgreen;
+  display:flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 12px;
-  gap: 15px;
-  input {
-    text-align: center;
-    font-size: 14px;
-    border: none;
-    padding: 3px 20px;
-    border-radius: 10px;
-    transition: all 0.3s;
-    &:hover {
-      background-color: #111;
-      color: #fff;
+  gap:20px;
+  border-radius:20px;
+    input{
+        width:200px;
+        text-align: center;
+        border-radius:20px;
+        border:none;
+        &:focus{
+        outline:none
+        }
     }
-  }
-  select {
-    font-size: 14px;
-    border: none;
-    padding: 3px 70px;
-    border-radius: 10px;
-  }
-`;
+    select{
+        width:200px;
+        border-radius:20px;
+        border:none;
+        text-align: center;
+        &:focus{
+          outline:none
+        }
+      }
+   textarea{
+        width:200px;
+    }
+`
 
-const Body2 = () => {
-  const [name, setName] = useState("");
-  const [gender, setGender] = useState("");
-  const [birth, setBirth] = useState("");
-  const [bio, setBio] = useState("");
+function Body2() {
 
-  const onChangeName = (e) => {
-    setName(e.target.value);
-  };
-  const onChangeGender = (e) => {
-    setGender(e.target.value);
-  };
-  const onChangeBirth = (e) => {
-    setBirth(e.target.value);
-  };
-  const onChangeBio = (e) => {
-    setBio(e.target.value);
-  };
+
+  const [value,setValue] = useState({
+    name:"",
+    gender:"",
+    date:"",
+    text:"",
+
+  })
+
+  const handleOnChange = (e) => {
+    console.log("현재 수정 대상 : ", e.target.value);
+
+    setValue({
+...value,
+[e.target.name]:e.target.value
+    })
+
+  }
+
+
   return (
     <Wrapper>
       <div>
-        <input
-          value={name}
-          type="text"
-          placeholder="이름"
-          onChange={onChangeName}
-        />
+       <input name="name" type="text" placeholder="이름" value={value.name} onChange={handleOnChange}></input>
+      </div>
+      <select name="gender" value={value.gender} onChange={handleOnChange}>
+        <option key={"women"} >여성</option>
+        <option key={"man"} >남성</option>
+      </select>
+      <div>
+       <input name="date" type="date" value={value.date} onChange={handleOnChange} ></input>
       </div>
       <div>
-        <select onChange={onChangeGender}>
-          <option key={"남성"}>남성</option>
-          <option key={"여성"}>여성</option>
-        </select>
+       <textarea name="text" value={value.text} onChange={handleOnChange}></textarea>
       </div>
-      <div>
-        <input type="date" onChange={onChangeBirth} />
-      </div>
-      <div>
-        <textarea onChange={onChangeBio}></textarea>
-      </div>
+      
     </Wrapper>
-  );
-};
+  )
+}
 
-export default Body2;
+export default Body2

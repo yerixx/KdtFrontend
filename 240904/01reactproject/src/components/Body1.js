@@ -26,12 +26,12 @@ export const Wrapper = styled.div`
 `;
 
 const Body1 = () => {
-  //   const handleOnClick = (e) => {
-  //     console.log(e.target.name);
-  //     e.target.name === "A버튼"
-  //       ? (e.target.innerText = "C버튼")
-  //       : (e.target.innerText = "D버튼");
-  //   };
+    const handleOnClick = (e) => {
+      console.log(e.target.name);
+      e.target.name === "A버튼"
+        ? (e.target.innerText = "C버튼")
+        : (e.target.innerText = "D버튼");
+    };
   //   const [count, setCount] = useState(0);
   //   const onIcrease = () => {
   //     setCount(count + 1);
@@ -43,23 +43,30 @@ const Body1 = () => {
   //   const handlOnChange = (e) => {
   //     setValue(e.target.value);
   //   };
-  //   const [date, setDate] = useState("");
-  //   const handlOnChange = (e) => {
-  //     setDate(e.target.value);
-  //   };
-  //   const [option, setOption] = useState("");
-  //   const handlOnChange = (e) => {
-  //     console.log("변경된 값", e.target.value);
-  //     setOption(e.target.value);
-  //   };
-  const [text, setText] = useState("");
-  const handlOnChange = (e) => {
-    setText(e.target.value);
-  };
+    // const [date, setDate] = useState("");
+    // const handlOnChange = (e) => {
+    //   setDate(e.target.value);
+    // };
+    // const [option, setOption] = useState("");
+    // const handlOnChange = (e) => {
+    //   console.log("변경된 값", e.target.value);
+    //   setOption(e.target.value);
+    // };
+  // const [text, setText] = useState("");
+  // const handlOnChange = (e) => {
+  //   setText(e.target.value);
+  // };
+
+  const [date,setDate] = useState("")
+
+  const changeDate = (e) => {
+    setDate(e.target.value)
+  }
+
   return (
     <Wrapper>
-      <textarea value={text} onChange={handlOnChange}></textarea>
-      <h3>{text}</h3>
+      {/* <textarea value={text} onChange={handlOnChange}></textarea>
+      <h3>{text}</h3> */}
       {/* <select value={option} onChange={handlOnChange}>
         <option key={"1번"}>
           1번
@@ -71,15 +78,19 @@ const Body1 = () => {
           3번
         </option>
       </select> */}
-      {/* <input type="date" value={date} onChange={handlOnChange} />
+
+<input type="date" value={date} onChange={changeDate}></input>
+<h1>{date}</h1>
+{/* 
+      <input type="date" value={date} onChange={handlOnChange} />
       <h2>{date}</h2> */}
       {/* <input type="text" onKeyUp={handlOnChange} />
       <h2>여기에 값이 입력되어야 함 :</h2>
-      <h2>{value}</h2> */}
-      {/* <button onClick={onMinu}>-</button>
+      <h2>{value}</h2>
+      <button onClick={onMinu}>-</button>
       <h2>{count}</h2>
-      <button onClick={onIcrease}>+</button> */}
-      {/* <button name="A버튼" onClick={handleOnClick}>
+      <button onClick={onIcrease}>+</button>
+      <button name="A버튼" onClick={handleOnClick}>
         A버튼
       </button>
       <button name="B버튼" onClick={handleOnClick}>

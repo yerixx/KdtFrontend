@@ -2,8 +2,7 @@ import React from "react";
 import "../components/Body.css";
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  width: 500px;
+export const Wrapper = styled.div`  width: 500px;
   height: 300px;
   background-color: #999;
   color: #fff;
@@ -11,12 +10,13 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 12px;
-`;
+  border-radius: 12px;`
 
 const Body = ({ children }) => {
   console.log(children);
-  return <Wrapper>{children}</Wrapper>;
+  return <Wrapper>안녕
+    <div className="title">dkssud</div>
+  </Wrapper>
 };
 Body.defaultProps = {
   favorList: [],

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import Body5 from "./components/Body5";
+import Body4 from "./components/Body4";
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -17,7 +17,7 @@ function App() {
     <>
       <Wrapper>
         <Header />
-        <Body5></Body5>
+        <Body4></Body4>
         <Footer />
       </Wrapper>
     </>

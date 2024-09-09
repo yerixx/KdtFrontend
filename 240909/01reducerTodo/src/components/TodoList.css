@@ -1,0 +1,22 @@
+.searchBar {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 15px 0;
+  border: none;
+  border-bottom: 1px solid #dcdcdc;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid #1f93ff;
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+}
+
+.list_Wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
