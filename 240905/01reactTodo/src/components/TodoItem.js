@@ -1,30 +1,21 @@
-import React from "react";
+import React from 'react'
 import "./TodoItem.css";
 
-const TodoItem = ({ id, isDone, content, createdDate, onUpdate, onDelete}) => {
-
-
-const onChangeCheckBox = () => {
-  onUpdate(id)
-}
-const onClickDelete = () => {
-  onDelete(id)
-}
-
+function TodoItem() {
   return (
     <div className="TodoItem">
       <div className="checkBox_col">
-        <input checked={isDone} type="checkBox" onChange={onChangeCheckBox}/>
+        <input type="checkbox"></input>
       </div>
-      <div className="title_col">{content}</div>
+      <div className="title_col">리액트 공부하기</div>
       <div className="date_col">
-        {new Date(createdDate).toLocaleDateString()}
-      </div>
+        {new Date().toLocaleDateString()}
+        </div>
       <div className="btn_col">
-        <button onClick={onClickDelete}>삭제</button>
+        <button>삭제</button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TodoItem;
+export default TodoItem

@@ -1,10 +1,12 @@
 import "./App.css";
-import { useReducer, useRef, useCallback} from "react";
+import React, { useReducer, useRef, useCallback} from "react";
 import Header from "./components/Header";
 import TodoEditer from "./components/TodoEditer";
 import TodoList from "./components/TodoList";
 // import TestComp from "./components/TestComp";
-import { type } from "@testing-library/user-event/dist/type";
+
+export const TodoContext = React.createContext()
+console.log(TodoContext)
 
 const mockTodo = [
   {
@@ -85,8 +87,11 @@ const onDelete = useCallback(
   return (
     <div className="App">
       <Header />
-      <TodoEditer onCreate={onCreate} />
-      <TodoList todo={todo} onUpdate={onUpdate} onDelete={onDelete} />
+      {/* value 보낼 값에 대한 정의 필요. 복수의 값이라 객체의 형태로. */}
+      <TodoContext.Provider value={{ todo, onCreate, onUpdate, onDelete }}>
+      <TodoEditer/>
+      <TodoList/>
+      </TodoContext.Provider>
     </div>
   );
 }

@@ -1,8 +1,12 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import "./TodoList.css";
 import TodoItem from "./TodoItem.js";
+import { TodoContext } from "../App.js";
 
-const TodoList = ({ todo, onUpdate, onDelete }) => {
+const TodoList = () => {
+  // todo 못찾아 오면 [] 빈 배열로 줘라.
+  const {todo = []} = useContext(TodoContext);
+  // 객체
   const [search, setsearch] = useState("");
   const onChangeSearch = (e) => {
     setsearch(e.target.value);
@@ -50,11 +54,16 @@ const TodoList = ({ todo, onUpdate, onDelete }) => {
           <TodoItem key={it.id} {...it} />
         ))} */}
         {getSearchResult().map((it) => (
-          <TodoItem key={it.id} {...it} onUpdate={onUpdate} onDelete={onDelete} />
+          <TodoItem key={it.id} {...it}/>
         ))}
       </div>
     </div>
   );
 };
+
+// //값이 없으면 일단 배열로 저장
+// TodoList.defaultProps = {
+//   todo:[],
+// };
 
 export default TodoList;

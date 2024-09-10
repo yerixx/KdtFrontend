@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
+import React from "react";
 import "./TodoItem.css";
-import { TodoContext } from "../App";
 
-const TodoItem = ({ id, isDone, content, createdDate}) => {
-  const {onUpdate, onDelete} =useContext(TodoContext)
+const TodoItem = ({ id, isDone, content, createdDate, onUpdate, onDelete}) => {
+
+
 const onChangeCheckBox = () => {
   onUpdate(id)
 }
@@ -27,4 +27,4 @@ const onClickDelete = () => {
   );
 };
 
-export default React.memo(TodoItem) ;
+export default TodoItem;
