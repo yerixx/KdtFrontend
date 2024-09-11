@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Back to Black";
+  src: url("./font/Back_to_Black_Demo.otf"), url("./font/Back_to_Black_Demo.ttf");
+}
 * {
   margin: 0;
   padding: 0;
@@ -151,7 +155,7 @@ nav ul li a {
   transition: all 0.3s;
 }
 .section#sec2 .inner h1 {
-  opacity: 1;
+  opacity: 0;
   transform: translateY(-50px);
 }
 .section#sec2 .inner h1 img {
@@ -163,7 +167,7 @@ nav ul li a {
   height: 35vw;
   max-height: 550px;
   margin-left: 50px;
-  opacity: 1;
+  opacity: 0;
   transform: translateY(-50px);
 }
 .section#sec2 .inner .slider_wrap .sec2_slider {
@@ -239,8 +243,44 @@ nav ul li a {
 .section#sec3 {
   background-image: linear-gradient(to top, #96FBC4 0%, #F9F586 100%);
 }
+.section#sec3 h1 {
+  position: relative;
+  font-family: Back to Black;
+  font-size: 100px;
+  color: #fff;
+  letter-spacing: -3px;
+  transform: translateX(-100px);
+  z-index: 2;
+}
+.section#sec3 h1 span {
+  opacity: 0;
+}
+.section#sec3 .sec3_svg {
+  fill: #a9dc8a;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
 .section#sec4 {
   background-image: linear-gradient(to top, #A18CD1 0%, #FBC2EB 100%);
+}
+.section#sec4 img {
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+.section#sec4 .img_wrap {
+  width: 500px;
+  height: 500px;
+  border: 1px solid #fff;
+}
+.section#sec4 .img_wrap .tail {
+  background: palevioletred;
+  width: 5%;
+  height: 5%;
 }
 .section .inner {
   width: 1200px;
