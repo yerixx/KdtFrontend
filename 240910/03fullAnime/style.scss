@@ -273,11 +273,13 @@ nav {
       left: 50%;
       transform: translate(-50%,-50%);
       opacity: 1;
+      z-index: 2;
     }
     .img_wrap{
+      display: flex;
+      flex-wrap: wrap;
       width: 500px;
       height: 500px;
-      border: 1px solid #fff;
       .tail{
         background: palevioletred;
         width: calc(100% / 20);
@@ -292,7 +294,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    position: relative;
   }
 
 }

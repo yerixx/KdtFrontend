@@ -17,9 +17,11 @@ const MainTitleText = styled.div`
   padding:20px;
 `;
 
+
 function App() {
   return (
   <BrowserRouter>
+
       <MainTitleText>
         Blog
       </MainTitleText>

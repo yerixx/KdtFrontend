@@ -26,9 +26,15 @@ const PostWritePage = () => {
 
   const navigate= useNavigate()
 
+  const names=["yerim","daivd","winter","summer"]
+
+
   return (
     <Wrapper>
       <Container>
+          {names.map((item,idx)=>(
+             <li key={idx}>{item}</li>
+          ))}
         <TextInput value={title} height={20} onChange={(e)=> setTitle(e.target.value)}/>
         <TextInput value={content} height={480} onChange={(e)=> setContent(e.target.value)}/>
         <Button title="글 작성하기" onClick={() => navigate("/")}/> 

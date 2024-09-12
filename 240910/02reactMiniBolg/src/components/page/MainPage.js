@@ -23,11 +23,14 @@ const Container = styled.div`
   }
 `;
 
+
 const MainPage = () => {
   const navigate = useNavigate();
   console.log(navigate)
   return (
     <Wrapper>
+
+
       {/* title을 props 객체로 보냄 */}
       <Container>
         <Button title="글 작성하기" onClick={()=>{navigate("/post-write")}}

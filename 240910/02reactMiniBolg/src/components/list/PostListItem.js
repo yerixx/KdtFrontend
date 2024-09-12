@@ -35,6 +35,7 @@ const PostListItem = ({post,onClick}) => {
 
   return (
     <Container>
+
       <VideoList onClick={onClick} thumbnailUrl={post.thumbnailUrl} videoUrl={post.videoUrl}/>
         <Wrapper onClick={onClick}>
         <TitleText>{post.title}</TitleText>

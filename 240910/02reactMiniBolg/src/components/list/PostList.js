@@ -10,6 +10,7 @@ const Wrapper = styled.div`
 `
 
 
+
 const PostList = ({posts,onClickItem}) => {
   // console.log(posts)
   return (
