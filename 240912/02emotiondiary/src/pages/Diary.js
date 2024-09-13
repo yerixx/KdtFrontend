@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Diary = () => {
-  return (
-    <div>
-      Diary Page
-    </div>
-  )
-}
+  return <div> Diary Page</div>;
+};
 
-export default Diary
+export default Diary;
