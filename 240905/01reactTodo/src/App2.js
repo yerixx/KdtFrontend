@@ -42,7 +42,7 @@ function App() {
     idRef.current += 1;
   };
 
-  const onUpdate = (targetId) => {
+const onUpdate = (targetId) => {
   setTodo(
     todo.map((it) => 
       it.id === targetId ? {...it, isDone: !it.isDone}: it

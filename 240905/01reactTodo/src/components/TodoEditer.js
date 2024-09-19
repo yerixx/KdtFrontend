@@ -5,7 +5,6 @@ import "./TodoEditer.css";
 function TodoEditer(text) {
 
   const clickBtn = (e) =>{
-
     console.log(e.target.value)
   }
   return (
