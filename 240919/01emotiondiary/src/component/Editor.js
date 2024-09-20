@@ -32,7 +32,7 @@ const Textarea = styled.textarea`
   padding: 20px;
   font-size: 20px;
   font-family: "Nanum Pen Script", cursive;
-  width: 100%;
+  width: 93%;
   min-height: 200px;
   resize: none;
   ::focus {
@@ -56,7 +56,7 @@ const Emotiongroup = styled.div`
 // Editor 컴포넌트가 사용될 상황
 // Editor 컴포넌트가 사용될 상황은 두가지다.
 // 1) 신규 일기를 작성하고자 하는 경우
-// 2) 이미 일기가 작성된 상태ㅔ서 수정, 편집하려고 하는 경우
+// 2) 이미 일기가 작성된 상태에서 수정, 편집하려고 하는 경우
 // => 이미 작성된 일기값 필요
 const Editor = ({ initData, onSubmit }) => {
   const navigate = useNavigate();
@@ -93,6 +93,7 @@ const Editor = ({ initData, onSubmit }) => {
   const handleSubmit = () => {
     onSubmit(state);
   };
+  
   const handleGoBack = () => {
     navigate(-1);
   };

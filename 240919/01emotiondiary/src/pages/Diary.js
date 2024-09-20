@@ -12,7 +12,9 @@ const Diary = () => {
   const { id } = useParams();
   // console.log(id);
   const data = useDiary(id)
-  console.log(data)
+  // console.log(data)
+
+  //예외조항 처리하면 useState() null 값 줘야함
   if(!data) {
     return <div>일기를 불러오고 있습니다...</div>
   } else {
@@ -27,7 +29,7 @@ const Diary = () => {
     const title = `${getFormattedDate(new Date(parseInt(date)))} 기록`
     return <div>
       <Header leftChild={<Button title={"<"} onClick={goBack}/>}  title={title} rightChild={<Button title={"수정"} onClick={goEdit}/>}/>
-      <Viewer/>
+      <Viewer content={content} emotionId={emotionId} />
     </div>;
   }
 };

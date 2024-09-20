@@ -21,7 +21,9 @@ const reducer = (state, action) => {
     case "INIT": {
       return action.data;
     }
+    // 신규 값 생성
     case "CREATE": {
+      // 기존 일기와 새로운 일기 배열로 반환
       return [action.data, ...state];
     }
     case "UPDATE": {

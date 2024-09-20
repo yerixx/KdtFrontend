@@ -63,8 +63,6 @@ const Img = styled.img`
   width: 50%;
 `;
 
-
-
 const DiaryItem = ({ id, date, content, emotionId }) => {
   const navigate = useNavigate()
   const goDetail = () => {
@@ -74,7 +72,6 @@ const DiaryItem = ({ id, date, content, emotionId }) => {
   const goEdit = () => {
     navigate(`/edit/${id}`)
   }
-
   return (
     <Wrapper>
       <DiaryContent>
