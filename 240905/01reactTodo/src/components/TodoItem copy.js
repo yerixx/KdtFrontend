@@ -10,7 +10,6 @@ const onChangeCheckBox = () => {
 const onClickDelete = () => {
   onDelete(id)
 }
-
   return (
     <div className="TodoItem">
       <div className="checkBox_col">

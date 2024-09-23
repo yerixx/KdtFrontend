@@ -4,6 +4,7 @@ import TodoItem from "./TodoItem.js";
 
 const TodoList = ({ todo, onUpdate, onDelete }) => {
   const [search, setsearch] = useState("");
+
   const onChangeSearch = (e) => {
     setsearch(e.target.value);
   };
@@ -13,7 +14,6 @@ const TodoList = ({ todo, onUpdate, onDelete }) => {
       ? todo
       : todo.filter((it) => it.content.toLowerCase().includes(search.toLowerCase()));
   };
-
   return (
     <div className="TodoList">
       <h4>🎯Todo List</h4>

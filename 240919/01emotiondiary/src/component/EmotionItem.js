@@ -18,7 +18,7 @@ const EmotionContent = styled.div`
     font-size: 18px;
   }
   &.EmotionItem_off {
-    background: #eceecec;
+    background: #eceece;
   }
   &.EmotionItem_on_1 {
     background: #64c964;
@@ -57,4 +57,4 @@ const EmotionItem = ({ id, name, img, onClick, isSelected }) => {
   );
 };
 
-export default EmotionItem;
+export default React.memo(EmotionItem);

@@ -21,7 +21,6 @@ const MainTitleText = styled.div`
 function App() {
   return (
   <BrowserRouter>
-
       <MainTitleText>
         Blog
       </MainTitleText>

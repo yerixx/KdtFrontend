@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import Button1 from "./Button1";
@@ -98,12 +98,12 @@ const Editor = ({ initData, onSubmit }) => {
     navigate(-1);
   };
 
-  const handleChangeEmotion = (emotionId) => {
-    setState({
-      ...state,
+  const handleChangeEmotion = useCallback((emotionId) => {
+    setState(prevState => ({
+      ...prevState,
       emotionId,
-    });
-  };
+    }));
+  }, []);
 
   return (
     <div>
