@@ -143,15 +143,18 @@ const PostForm = () => {
         placeholder="What is Happening"
         required
       ></TextArea>
+    
       <AttachFileButton htmlFor="file">
         {file ? "Content Added✅" : "Add 💨"}
       </AttachFileButton>
+
       <AttachFileInput
         onChange={onFileChange}
         type="file"
         id="file"
         accept="video/*, image/*"
       />
+      
       <SubmitBtn type="submit" value={isLoading ? "Posting..." : "Post"} />
     </Form>
   );
