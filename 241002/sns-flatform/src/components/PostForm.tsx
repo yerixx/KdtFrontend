@@ -36,7 +36,6 @@ const TextArea = styled.textarea`
     border-color: #1d9bf9;
   }
 `;
-
 const AttachFileButton = styled.label`
   width: 100%;
   color: #1d9bf9;
@@ -54,11 +53,9 @@ const AttachFileButton = styled.label`
     color: #fff;
   }
 `;
-
 const AttachFileInput = styled.input`
   display: none;
 `;
-
 const SubmitBtn = styled.input`
   background: #fff;
   color: #1d9bf9;
@@ -143,7 +140,7 @@ const PostForm = () => {
         placeholder="What is Happening"
         required
       ></TextArea>
-    
+
       <AttachFileButton htmlFor="file">
         {file ? "Content Added✅" : "Add 💨"}
       </AttachFileButton>
@@ -154,7 +151,7 @@ const PostForm = () => {
         id="file"
         accept="video/*, image/*"
       />
-      
+
       <SubmitBtn type="submit" value={isLoading ? "Posting..." : "Post"} />
     </Form>
   );
