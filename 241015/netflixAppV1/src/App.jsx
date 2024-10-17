@@ -1,11 +1,13 @@
-import React from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState } from "react";
 import { createGlobalStyle } from "styled-components";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reset from "styled-reset";
+
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Movie from "./pages/Movie";
 import MovieDetail from "./pages/MovieDetail";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const GlobalStyles = createGlobalStyle`
   ${reset}
@@ -24,9 +26,9 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
-
-  body{
-    background:#000;
+  body {
+    background-color: #000;
+    color: #fff;
   }
 `;
 
@@ -40,24 +42,24 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "movie",
+        path: "/movie",
         element: <Movie />,
       },
       {
-        path: "movie/:id",
+        path: "/movie/:id",
         element: <MovieDetail />,
       },
     ],
   },
 ]);
 
-const App = () => {
+function App() {
   return (
     <>
       <GlobalStyles />
       <RouterProvider router={router} />
     </>
   );
-};
+}
 
 export default App;

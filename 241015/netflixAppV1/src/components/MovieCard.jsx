@@ -39,12 +39,12 @@ let initialState = {
   topRatedMovie: {},
   upComingMovie: {},
   genreList: [],
+  loading: true,
 };
 
 const movieReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
-    //loading spinner
     case "GET_MOVIES_REQUEST":
       return { ...state, loading: true };
     case "GET_MOVIE_SUCCESS":
@@ -64,4 +64,3 @@ const movieReducer = (state = initialState, action) => {
 };
 
 export default movieReducer;
-0;
