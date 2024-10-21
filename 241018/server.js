@@ -13,7 +13,6 @@ let tweets = [
     userId: "1",
   },
 ];
-
 //사용자 값
 let users = [
   {
@@ -138,6 +137,7 @@ const resolvers = {
       return true;
     },
   },
+
   // User: {
   //   // 이 시점에서 default값을 받는 느낌으로,
   //   // userName() {
@@ -153,6 +153,7 @@ const resolvers = {
   //     return `${firstName} ${lastName}`;
   //   },
   // },
+
   User: {
     // 함수
     firstName({ firstName }) {
@@ -165,6 +166,7 @@ const resolvers = {
       return `${firstName} ${lastName}`;
     },
   },
+
   //트윗의 연결고리 부분
   //왓?! 이해안됨
   Tweet: {
@@ -180,6 +182,7 @@ const resolvers = {
     },
   },
 };
+
 // CJS 방식 <=> ESM과는 다름
 // const { ApolloServer } = require("apollo-server");
 // APOLL는 항상 타입에 대한 정의가 필요하다.
