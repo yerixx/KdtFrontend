@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    // ES의 최신 모듈을 쓰겠다
+    "module": "ESNext",
+    "strict": false,
+    "strictNullChecks": false,
+    "moduleDetection": "force",
+    "skipLibCheck": true
+  },
+  "ts-node": {
+    "esm": true
+  }
+}
