@@ -4,6 +4,7 @@ import styled from "styled-components";
 import TextInput from "./TextInput";
 import Button from "./Button";
 import Title from "./Title";
+import { ToDoListContext } from "../contexts/ToDoContext";
 
 const Wrapper = styled.div`
   position: absolute;
@@ -39,20 +40,20 @@ const InputContainer = styled.div`
 `;
 
 interface Props {
-  onAdd: (toDo: string) => void;
+  onClose: () => void;
 }
 
 const ToDoInput = ({ onClose }: Props) => {
   const { onAdd } = useContext(ToDoListContext);
   const [toDo, setToDo] = useState("");
-  //왜 대체 한다고? 다시 공부 필요
+
   const onAddTodo = () => {
     if (toDo === "") return;
-
     onAdd(toDo);
     setToDo("");
     onClose();
   };
+
   return (
     <Wrapper>
       <Background />

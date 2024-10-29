@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import DataView from "./components/DataView";
 import InputContainer from "./components/InputContainer";
+import { ToDoListContextProvider } from "./contexts/ToDoContext";
 
 const Container = styled.div`
   width: 100%;
@@ -39,8 +40,10 @@ const App = () => {
 
   return (
     <Container>
-      <DataView toDoList={toDoList} onDelete={onDelete} />
-      <InputContainer onAdd={onAdd} />
+      <ToDoListContextProvider>
+        <DataView />
+        <InputContainer />
+      </ToDoListContextProvider>
     </Container>
   );
 };

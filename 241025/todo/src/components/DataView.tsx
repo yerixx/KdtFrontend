@@ -13,17 +13,17 @@ const Container = styled.div`
   border-radius: 8px;
 `;
 
-interface Props {
-  toDoList: Array<string>;
-  onDelete?: (todo: string) => void;
-}
+// interface Props {
+//   toDoList: Array<string>;
+//   onDelete?: (todo: string) => void;
+// }
 
-const DataView = ({ toDoList, onDelete }: Props) => {
+const DataView = () => {
   return (
     <Container>
       <Title label={"할 일 목록"} />
       {/* toDoList 배열의 형태로 출발 */}
-      <ToDoList toDoList={toDoList} onDelete={onDelete} />
+      <ToDoList />
     </Container>
   );
 };
