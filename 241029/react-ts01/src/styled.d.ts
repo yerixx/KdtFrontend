@@ -1,4 +1,3 @@
-//테마 타입 정의
 import "styled-components";
 
 declare module "styled-components" {

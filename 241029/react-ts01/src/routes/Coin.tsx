@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, Outlet, useMatch } from "react-router-dom";
 import styled from "styled-components";
-import Chart from "./Chart";
-import Price from "./Price";
+
+import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCoinInfo, fetchCoinPrice } from "../api";
+import { CoinInterface } from "./Coins";
+import { Helmet } from "react-helmet";
 
 const Container = styled.main`
   width: 100%;
@@ -12,29 +15,33 @@ const Container = styled.main`
   align-items: center;
   margin-top: 50px;
 `;
+
 const Header = styled.header`
   font-size: 32px;
 `;
+
 const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
 `;
+
 const Loader = styled.span`
-  font-size: 22px;
   color: ${(props) => props.theme.accentColor};
+  font-size: 22px;
 `;
+
 const Overview = styled.div`
   width: 600px;
   color: ${(props) => props.theme.bgColor};
 `;
+
 const OverviewItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
   padding: 10px 20px;
-  border-radius: 10px;
-
   background: ${(props) => props.theme.textColor};
+  border-radius: 8px;
   span:first-child {
     font-size: 20px;
     font-weight: bold;
@@ -43,22 +50,48 @@ const OverviewItem = styled.div`
     color: ${(props) => props.theme.accentColor};
   }
 `;
+
 const Description = styled.div`
   width: 600px;
-  padding: 14px;
-  border-radius: 8px;
   margin-bottom: 10px;
+  padding: 10px 20px;
+  border-radius: 8px;
   background: ${(props) => props.theme.accentColor};
 `;
 
+const Tabs = styled.div`
+  width: 600px;
+  display: flex;
+  gap: 10px;
+`;
+
+const Tab = styled.span<IsActive>`
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  background: ${(props) =>
+    props.isActive ? props.theme.textColor : props.theme.accentColor};
+  color: ${(props) =>
+    props.isActive ? props.theme.accentColor : props.theme.textColor};
+  padding: 8px 0px;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.3s;
+  cursor: pointer;
+  &:hover {
+    background: ${(props) => props.theme.textColor};
+    color: ${(props) => props.theme.accentColor};
+  }
+`;
+
 interface RouterParams {
-  [key: string]: string | undefined;
   coinId: string;
 }
 
 interface LocationState {
   state: string;
 }
+
 interface InfoData {
   id: string;
   name: string;
@@ -68,6 +101,7 @@ interface InfoData {
   is_active: boolean;
   type: string;
 }
+
 interface PriceData {
   id: string;
   name: string;
@@ -101,34 +135,107 @@ interface PriceData {
     };
   };
 }
+interface IsActive {
+  isActive: boolean;
+}
+
+// *Coins 컴포넌트에서 Link를 클릭했을 때, state 속성 안에 값이 담겨서 Coin 컴포넌트로 이동시키게 한 이유?
+
+// 1) 외부 API데이터 & Parameter 값을 비교해서 UI를 출력
+// 2) 많은 중요한 데이터를 state로 보내면 되지 않나?
+// const Coin = () => {
+//   const [loading, setLoading] = useState(true);
+//   const [info, setInfo] = useState({});
+//   const [priceInfo, setPriceInfo] = useState([]);
+//   const { state } = useLocation() as LocationState;
+//   const { coinId } = useParams<RouterParams | any>();
+
+//   useEffect(() => {
+//     (async () => {
+//       const infoData = await (
+//         await fetch(
+//           `https://raw.githubusercontent.com/Divjason/coindata/refs/heads/main/coins.json`
+//         )
+//       ).json();
+//       // console.log(info);
+//       const priceData = await (
+//         await fetch(
+//           `https://ohlcv-api.nomadcoders.workers.dev?coinId=${coinId}`
+//         )
+//       ).json(); // 괄호 위치 수정
+//       setInfo(infoData);
+//       setPriceInfo(priceData);
+//       console.log(info);
+//     })();
+//   }, [coinId]);
+
+//   return (
+//     <Container>
+//       <Header>
+//         <Title>{state || "Detour this page..."}</Title>
+//       </Header>
+//       {loading ? <Loader>Loading...</Loader> : null}
+//     </Container>
+//   );
+// };
+
+// export default Coin;
 
 const Coin = () => {
-  const [loading, setLoading] = useState(true);
-  const [info, setInfo] = useState<InfoData>();
-  const [priceInfo, setPriceInfo] = useState<PriceData>();
+  // const [loading, setLoading] = useState(true);
+  // const [info, setInfo] = useState<InfoData>();
+  // const [priceInfo, setPriceInfo] = useState<PriceData>();
+  // state를 쓰면, 즐겨찾기 했을 때 뜨지않음.
+  // 중첩 삼항 조건 연산자를 쓴다.
   const { state } = useLocation() as LocationState;
-  const params = useParams();
-  const coinId = params.coinId;
+  const { coinId } = useParams<RouterParams | any>();
+  const priceMatch = useMatch("/:coinId/price");
+  const chartMatch = useMatch("/:coinId/chart");
+  console.log(priceMatch);
+  console.log(chartMatch);
 
-  useEffect(() => {
-    (async () => {
-      const infoData = await (
-        await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)
-      ).json();
-      const priceData = await (
-        await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)
-      ).json();
+  // useEffect(() => {
+  //   (async () => {
+  //     const infoData = await (
+  //       await fetch(
+  //         `https://my-json-server.typicode.com/Divjason/coinlist/coins/${coinId}`
+  //       )
+  //     ).json();
+  //     const priceData = await (
+  //       await fetch(
+  //         `https://my-json-server.typicode.com/Divjason/coinprice/coinprice/${coinId}`
+  //       )
+  //     ).json();
+  //     setInfo(infoData);
+  //     setPriceInfo(priceData);
+  //     setLoading(false);
+  //   })();
+  // }, []);
 
-      setInfo(infoData);
-      setPriceInfo(priceData);
-      setLoading(false);
-    })();
-  }, [coinId]);
+  // 값을 가져온 후 데이터를 출력할 때 사용하는 방법
+  const { isLoading: infoLoading, data: infoData } = useQuery<CoinInterface>({
+    queryKey: ["info", coinId],
+    queryFn: () => fetchCoinInfo(coinId),
+  });
+
+  // 값을 가져온 후 데이터를 출력할 때 사용하는 방법
+  const { isLoading: priceLoading, data: priceData } = useQuery<PriceData>({
+    queryKey: ["price", coinId],
+    queryFn: () => fetchCoinInfo(coinId),
+    refetchInterval: 5000,
+  });
+
+  const loading = infoLoading || priceLoading;
+
+  console.log(infoData);
 
   return (
     <Container>
+      <Helmet>
+        <title>{infoData?.name}</title>
+      </Helmet>
       <Header>
-        <Title>{state ? state : loading ? "Loading..." : info?.name}</Title>
+        <Title>{state ? state : loading ? "Loading..." : infoData?.name}</Title>
       </Header>
       {loading ? (
         <Loader>Loading...</Loader>
@@ -136,49 +243,49 @@ const Coin = () => {
         <>
           <Overview>
             <OverviewItem>
-              <span>Rank:</span>
-              <span>{info?.rank}</span>
+              <span>Rank : </span>
+              <span>{infoData?.rank}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Symbol:</span>
-              <span>${info?.symbol}</span>
+              <span>Symbol : </span>
+              <span>{infoData?.symbol}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Price:</span>
-              <span>${priceInfo?.quotes.USD.price.toFixed(3)}</span>
-            </OverviewItem>
-            <OverviewItem>
-              <span>Open Source:</span>
-              <span>{info?.is_active ? "Yes" : "No"}</span>
+              <span>Open Source : </span>
+              <span>{infoData?.is_active ? "Yes" : "No"}</span>
             </OverviewItem>
           </Overview>
           <Description>
-            <b>[Information of {info?.type}]</b>
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. In
-            consequatur fuga dignissimos voluptates quibusdam distinctio
-            perferendis, suscipit explicabo repellendus. Debitis ab molestias
-            voluptatibus quos laboriosam, nobis nemo odit sapiente impedit.
-            Vero, accusamus odit! Inventore eos ipsam maiores atque tenetur
-            consectetur? Ipsam hic magni consequuntur quas dolores deleniti enim
-            fugiat qui at ab ad iusto ipsum tenetur impedit, minus laudantium
-            laborum. Perspiciatis fuga nihil facilis explicabo aspernatur autem.
-            Ad repellat autem vel consequuntur asperiores nam voluptates quos
-            hic perspiciatis quas corrupti sapiente nihil mollitia earum, est
-            nostrum, ipsam, porro reiciendis debitis!
+            🌈infomation of {infoData?.type} type : Lorem ipsum dolor sit, amet
+            consectetur adipisicing elit. Eligendi soluta, nesciunt quasi iste
+            molestiae consequuntur, sit possimus in voluptatem quam sed, ullam
+            aperiam? Voluptatibus quasi recusandae beatae modi nam sequi! Sunt,
+            dicta quasi harum magnam nemo ratione! Vel minus autem neque quia
+            repellendus placeat voluptates voluptatem? Incidunt accusantium vero
+            esse voluptatibus consectetur inventore, minima magni praesentium
+            optio iure omnis vitae?
           </Description>
           <Overview>
             <OverviewItem>
-              <span>Total Supply :</span>
-              <span>{priceInfo?.total_supply}</span>
+              <span>Total Supply : </span>
+              <span>{priceData?.total_supply}</span>
             </OverviewItem>
             <OverviewItem>
-              <span>Max Supply :</span>
-              <span>{priceInfo?.max_supply}</span>
+              <span>Max Supply : </span>
+              <span>{priceData?.max_supply}</span>
             </OverviewItem>
           </Overview>
+          <Tabs>
+            <Tab isActive={chartMatch !== null}>
+              <Link to={`/${coinId}/chart`}>Chart</Link>
+            </Tab>
+            <Tab isActive={priceMatch !== null}>
+              <Link to={`/${coinId}/price`}>Price</Link>
+            </Tab>
+          </Tabs>
         </>
       )}
+      <Outlet />
     </Container>
   );
 };

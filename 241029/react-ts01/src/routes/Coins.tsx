@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { useQuery } from "@tanstack/react-query";
+import { fetchCoins } from "../api";
+import { Helmet } from "react-helmet";
 
 const Container = styled.main`
   width: 100%;
@@ -11,16 +14,13 @@ const Container = styled.main`
   margin-top: 50px;
 `;
 
-const Header = styled.header`
-  font-size: 32px;
-`;
+const Header = styled.header``;
 
 const Title = styled.h1`
   color: ${(props) => props.theme.accentColor};
 `;
-
 const CoinList = styled.ul`
-  width: 800px;
+  width: 700px;
 `;
 
 const Coin = styled.li`
@@ -31,59 +31,62 @@ const Coin = styled.li`
   border-radius: 8px;
   margin-bottom: 10px;
   display: flex;
-  align-items: center;
   cursor: pointer;
   a {
     display: flex;
+    justify-content: space-around;
     align-items: center;
     color: inherit;
     transition: color 0.3s;
-    margin: 0 20px;
+    margin: 0 4px;
     &:hover {
       color: ${(props) => props.theme.accentColor};
     }
   }
 `;
+
+// const coins = [
+//   {
+//     id: "btc-bitcoin",
+//     name: "Bitcoin",
+//     symbol: "BTC",
+//     rank: 1,
+//     is_new: false,
+//     is_active: true,
+//     type: "coin",
+//   },
+//   {
+//     id: "eth-ethereum",
+//     name: "Ethereum",
+//     symbol: "eth",
+//     rank: 2,
+//     is_new: false,
+//     is_active: true,
+//     type: "coin",
+//   },
+//   {
+//     id: "hex-hex",
+//     name: "Hex",
+//     symbol: "Hex",
+//     rank: 1,
+//     is_new: false,
+//     is_active: true,
+//     type: "coin",
+//   },
+// ];
+
+const Loader = styled.span`
+  color: ${(props) => props.theme.accentColor};
+  font-size: 22px;
+`;
+
 const Img = styled.img`
   width: 35px;
-  height: 35px;
-  margin: 0 30px;
+  height: auto;
+  margin: 0 26px;
 `;
-const Loader = styled.span`
-  font-size: 22px;
-  color: ${(props) => props.theme.accentColor};
-`;
-const coins = [
-  {
-    id: "btc-bitcoin",
-    name: "Bitcoin",
-    symbol: "BTC",
-    rank: 1,
-    is_new: false,
-    is_active: true,
-    type: "coin",
-  },
-  {
-    id: "eth-ethereum",
-    name: "Ethereum",
-    symbol: "ETH",
-    rank: 2,
-    is_new: false,
-    is_active: true,
-    type: "coin",
-  },
-  {
-    id: "hex-hex",
-    name: "HEX",
-    symbol: "HEX",
-    rank: 3,
-    is_new: false,
-    is_active: true,
-    type: "coin",
-  },
-];
 
-interface CoinInterface {
+export interface CoinInterface {
   id: string;
   name: string;
   symbol: string;
@@ -94,39 +97,47 @@ interface CoinInterface {
 }
 
 const Coins = () => {
-  //제네릭 타입 : 어떤 값이 들어올지 미정일 때
-  const [coins, setCoins] = useState<CoinInterface[]>([]);
-  const [loading, setLoading] = useState(true);
+  // const [coins, setCoins] = useState<CoinInterface[]>([]);
+  // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    //고차함수
-    (async () => {
-      const response = await fetch(
-        "https://raw.githubusercontent.com/Divjason/coindata/refs/heads/main/coins.json"
-      );
-      const json = await response.json();
-      setCoins(json.slice(0, 101));
-      setLoading(false);
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await fetch(
+  //       "https://raw.githubusercontent.com/Divjason/coindata/refs/heads/main/coins.json"
+  //     );
+  //     const json = await response.json(); // await 키워드를 추가하여 JSON 데이터를 가져옴
+  //     setCoins(json.slice(0, 101));
+  //     setLoading(false);
+  //   })();
+  // }, []);
+
+  const { isLoading, data } = useQuery<CoinInterface[]>({
+    queryKey: ["allCoins"],
+    queryFn: fetchCoins,
+  });
 
   return (
     <Container>
+      <Helmet>
+        <title>Coin List</title>
+      </Helmet>
       <Header>
         <Title>Coin List</Title>
       </Header>
-      {loading ? (
-        <Loader> "Loading..."</Loader>
+      {/* 기존에 사용하던 loading을 isLoading으로 변경 */}
+      {isLoading ? (
+        <Loader>Loading...</Loader>
       ) : (
         <CoinList>
-          {coins.map((coin) => (
+          {/*기존에 data가 아닌 coins를 사용하던 것을 data로 변경*/}
+          {data?.slice(0, 100).map((coin) => (
             <Coin key={coin.id}>
+              🎁 Now Rank: {coin.rank}
+              <Img
+                src={`https://cryptoicon-api.pages.dev/api/icon/${coin.symbol.toLowerCase()}`}
+              />
               <Link to={`/${coin.id}`} state={`${coin.name}`}>
-                Now Rank : {coin.rank}
-                <Img
-                  src={`https://cryptoicon-api.pages.dev/api/icon/${coin.symbol.toLowerCase()} `}
-                />
-                {coin.name}({coin.symbol}) &rarr;{coin.name} Information
+                {coin.name} Information ({coin.symbol}) &rarr;
               </Link>
             </Coin>
           ))}
