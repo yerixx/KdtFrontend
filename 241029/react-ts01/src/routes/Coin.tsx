@@ -1,62 +1,67 @@
-import { useParams, useLocation, Outlet, useMatch } from "react-router-dom";
-import styled from "styled-components";
-
-import { Link } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+import {
+  useParams,
+  useLocation,
+  Outlet,
+  Link,
+  useMatch,
+  useOutletContext,
+} from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinPrice } from "../api";
 import { CoinInterface } from "./Coins";
 import { Helmet } from "react-helmet";
+import { C } from "@tanstack/query-core/build/legacy/hydration-mKPlgzt9";
 
-const Container = styled.main`
+const Wrapper = styled.main`
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 40px;
 `;
-
 const Header = styled.header`
-  font-size: 32px;
+  margin-bottom: 20px;
 `;
-
 const Title = styled.h1`
-  color: ${(props) => props.theme.accentColor};
+  font-size: 40px;
+  color: ${({ theme }) => theme.accentColor};
 `;
-
-const Loader = styled.span`
-  color: ${(props) => props.theme.accentColor};
-  font-size: 22px;
-`;
+const Loader = styled.span``;
 
 const Overview = styled.div`
+  color: ${({ theme }) => theme.bgColor};
   width: 600px;
-  color: ${(props) => props.theme.bgColor};
 `;
-
 const OverviewItem = styled.div`
+  background: ${({ theme }) => theme.textColor};
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
-  padding: 10px 20px;
-  background: ${(props) => props.theme.textColor};
-  border-radius: 8px;
+  padding: 10px 0;
   span:first-child {
-    font-size: 20px;
-    font-weight: bold;
     text-transform: uppercase;
     margin-bottom: 5px;
-    color: ${(props) => props.theme.accentColor};
+    color: ${({ theme }) => theme.accentColor};
+  }
+  span:last-child {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
   }
 `;
-
 const Description = styled.div`
   width: 600px;
-  margin-bottom: 10px;
-  padding: 10px 20px;
+  background: ${({ theme }) => theme.accentColor};
+  color: ${({ theme }) => theme.textColor};
+  padding: 30px;
   border-radius: 8px;
-  background: ${(props) => props.theme.accentColor};
+  margin-bottom: 10px;
+  line-height: 1.7;
 `;
 
 const Tabs = styled.div`
@@ -71,10 +76,10 @@ const Tab = styled.span<IsActive>`
   font-size: 14px;
   font-weight: bold;
   background: ${(props) =>
-    props.isActive ? props.theme.textColor : props.theme.accentColor};
+    props.$isActive ? props.theme.textColor : props.theme.accentColor};
   color: ${(props) =>
-    props.isActive ? props.theme.accentColor : props.theme.textColor};
-  padding: 8px 0px;
+    props.$isActive ? props.theme.accentColor : props.theme.textColor};
+  padding: 8px 0;
   border-radius: 8px;
   transition: background 0.3s, color 0.3s;
   cursor: pointer;
@@ -92,15 +97,15 @@ interface LocationState {
   state: string;
 }
 
-interface InfoData {
-  id: string;
-  name: string;
-  symbol: string;
-  rank: number;
-  is_new: boolean;
-  is_active: boolean;
-  type: string;
-}
+// interface InfoData {
+//   id: string;
+//   name: string;
+//   symbol: string;
+//   rank: number;
+//   is_new: boolean;
+//   is_active: boolean;
+//   type: string;
+// }
 
 interface PriceData {
   id: string;
@@ -135,64 +140,16 @@ interface PriceData {
     };
   };
 }
+
 interface IsActive {
-  isActive: boolean;
+  $isActive: boolean;
 }
 
-// *Coins 컴포넌트에서 Link를 클릭했을 때, state 속성 안에 값이 담겨서 Coin 컴포넌트로 이동시키게 한 이유?
-
-// 1) 외부 API데이터 & Parameter 값을 비교해서 UI를 출력
-// 2) 많은 중요한 데이터를 state로 보내면 되지 않나?
-// const Coin = () => {
-//   const [loading, setLoading] = useState(true);
-//   const [info, setInfo] = useState({});
-//   const [priceInfo, setPriceInfo] = useState([]);
-//   const { state } = useLocation() as LocationState;
-//   const { coinId } = useParams<RouterParams | any>();
-
-//   useEffect(() => {
-//     (async () => {
-//       const infoData = await (
-//         await fetch(
-//           `https://raw.githubusercontent.com/Divjason/coindata/refs/heads/main/coins.json`
-//         )
-//       ).json();
-//       // console.log(info);
-//       const priceData = await (
-//         await fetch(
-//           `https://ohlcv-api.nomadcoders.workers.dev?coinId=${coinId}`
-//         )
-//       ).json(); // 괄호 위치 수정
-//       setInfo(infoData);
-//       setPriceInfo(priceData);
-//       console.log(info);
-//     })();
-//   }, [coinId]);
-
-//   return (
-//     <Container>
-//       <Header>
-//         <Title>{state || "Detour this page..."}</Title>
-//       </Header>
-//       {loading ? <Loader>Loading...</Loader> : null}
-//     </Container>
-//   );
-// };
-
-// export default Coin;
-
 const Coin = () => {
-  // const [loading, setLoading] = useState(true);
-  // const [info, setInfo] = useState<InfoData>();
-  // const [priceInfo, setPriceInfo] = useState<PriceData>();
-  // state를 쓰면, 즐겨찾기 했을 때 뜨지않음.
-  // 중첩 삼항 조건 연산자를 쓴다.
   const { state } = useLocation() as LocationState;
   const { coinId } = useParams<RouterParams | any>();
   const priceMatch = useMatch("/:coinId/price");
   const chartMatch = useMatch("/:coinId/chart");
-  console.log(priceMatch);
-  console.log(chartMatch);
 
   // useEffect(() => {
   //   (async () => {
@@ -212,30 +169,29 @@ const Coin = () => {
   //   })();
   // }, []);
 
-  // 값을 가져온 후 데이터를 출력할 때 사용하는 방법
   const { isLoading: infoLoading, data: infoData } = useQuery<CoinInterface>({
     queryKey: ["info", coinId],
     queryFn: () => fetchCoinInfo(coinId),
   });
-
-  // 값을 가져온 후 데이터를 출력할 때 사용하는 방법
   const { isLoading: priceLoading, data: priceData } = useQuery<PriceData>({
     queryKey: ["price", coinId],
-    queryFn: () => fetchCoinInfo(coinId),
+    queryFn: () => fetchCoinPrice(coinId),
     refetchInterval: 5000,
   });
 
   const loading = infoLoading || priceLoading;
 
-  console.log(infoData);
-
   return (
-    <Container>
+    <Wrapper>
       <Helmet>
         <title>{infoData?.name}</title>
       </Helmet>
       <Header>
-        <Title>{state ? state : loading ? "Loading..." : infoData?.name}</Title>
+        <Link to={"/"}>
+          <Title>
+            {state ? state : loading ? "Loading..." : infoData?.name}
+          </Title>
+        </Link>
       </Header>
       {loading ? (
         <Loader>Loading...</Loader>
@@ -256,14 +212,11 @@ const Coin = () => {
             </OverviewItem>
           </Overview>
           <Description>
-            🌈infomation of {infoData?.type} type : Lorem ipsum dolor sit, amet
-            consectetur adipisicing elit. Eligendi soluta, nesciunt quasi iste
-            molestiae consequuntur, sit possimus in voluptatem quam sed, ullam
-            aperiam? Voluptatibus quasi recusandae beatae modi nam sequi! Sunt,
-            dicta quasi harum magnam nemo ratione! Vel minus autem neque quia
-            repellendus placeat voluptates voluptatem? Incidunt accusantium vero
-            esse voluptatibus consectetur inventore, minima magni praesentium
-            optio iure omnis vitae?
+            🌈 Information of {infoData?.type} type : Lorem ipsum dolor sit,
+            amet consectetur adipisicing elit. Eligendi soluta, nesciunt quasi
+            iste molestiae consequuntur, sit possimus in voluptatem quam sed,
+            ullam aperiam? Voluptatibus quasi recusandae beatae modi nam sequi!
+            Sunt, dicta quasi harum magnam nemo ratione! Vel minus autem neque
           </Description>
           <Overview>
             <OverviewItem>
@@ -276,17 +229,17 @@ const Coin = () => {
             </OverviewItem>
           </Overview>
           <Tabs>
-            <Tab isActive={chartMatch !== null}>
+            <Tab $isActive={chartMatch !== null}>
               <Link to={`/${coinId}/chart`}>Chart</Link>
             </Tab>
-            <Tab isActive={priceMatch !== null}>
+            <Tab $isActive={priceMatch !== null}>
               <Link to={`/${coinId}/price`}>Price</Link>
             </Tab>
           </Tabs>
         </>
       )}
       <Outlet />
-    </Container>
+    </Wrapper>
   );
 };
 

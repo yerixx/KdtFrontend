@@ -1,39 +1,36 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-import { darktheme, lighttheme } from "./theme";
-import { ThemeProvider } from "styled-components";
+import { darkTheme, lightTheme } from "./theme";
+import { isDarkAtom } from "./atoms";
+import { useRecoilValue } from "recoil";
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
-*{
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  a{
+    color: inherit;
+    text-decoration: none;
+  }
+  ul,li{
+    list-style: none;
+  }
+  body{
+    font-family: "Orbit", sans-serif;
+    background: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.textColor};
+  }
+`;
 
-}
-
-ul, li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-body {
-  font-family: "Source Sans 3", sans-serif;
-  background: ${(props) => props.theme.bgColor};
-  color: ${(props) => props.theme.textColor}  
-}`;
-
-const App = () => {
+const Root = () => {
+  const isDark = useRecoilValue(isDarkAtom);
+  // console.log(isDark);
   return (
     <>
-      <ThemeProvider theme={lighttheme}>
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle />
         <Outlet />
         <ReactQueryDevtools
@@ -45,4 +42,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Root;

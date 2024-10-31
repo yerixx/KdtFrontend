@@ -18,7 +18,6 @@ const router = createBrowserRouter([
         path: "/:coinId",
         element: <Coin />,
         children: [
-          // 차트가 기본값으로 나오게
           {
             path: "",
             element: <Navigate to={"chart"} replace />,

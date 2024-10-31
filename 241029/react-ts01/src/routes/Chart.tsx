@@ -1,16 +1,18 @@
-import React from "react";
+import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCoinsHistory } from "../api";
 import ReactApexChart from "react-apexcharts";
-import styled from "styled-components";
-const Container = styled.div`
-  margin-top: 20px;
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
+
+const Wrapper = styled.div`
+  margin: 20px 0;
 `;
 
 interface CoinHistory {
   time_open: string;
-  time_close: string;
+  time_close: number;
   open: number;
   high: number;
   low: number;
@@ -19,7 +21,19 @@ interface CoinHistory {
   market_cap: number;
 }
 
+interface Example {
+  time_open: number;
+  time_close: number;
+  open: string;
+  high: string;
+  low: string;
+  close: string;
+  volume: string;
+  market_cap: number;
+}
+
 const Chart = () => {
+  const isDark = useRecoilValue(isDarkAtom);
   const { coinId } = useParams();
   // console.log(coinId);
   const { isLoading, data } = useQuery<CoinHistory[]>({
@@ -27,35 +41,36 @@ const Chart = () => {
     queryFn: () => fetchCoinsHistory(coinId),
     refetchInterval: 5000,
   });
-  console.log(data);
-  // console.log(isLoading, data);
+
+  const chartData = Array.isArray(data) && data.length > 0 ? data : [];
+
   return (
-    <Container>
+    <Wrapper>
       {isLoading ? (
-        "Loading Chart"
-      ) : (
+        "Loading Chart..."
+      ) : chartData.length > 0 ? (
         <ReactApexChart
-          width={600}
+          width={700}
           type="line"
           series={[
             {
-              name: "Hello",
-              data: data?.map((price) => Number(price.close)) || [],
+              name: "Price",
+              data: Array.isArray(data) ? data.map((price) => price.close) : [],
             },
           ]}
           options={{
             theme: {
-              mode: "dark",
+              mode: isDark ? "dark" : "light",
             },
             stroke: {
-              width: 4,
               curve: "smooth",
+              width: 4,
             },
             chart: {
+              background: "linear-gradient(to top, #5ee7fd 0%, #b490ca 100%)",
               toolbar: {
-                show: true,
+                show: false,
               },
-              background: "linear-gradient(to top,#5ee7df 0%,#b490ca 100%",
             },
             grid: {
               show: false,
@@ -64,30 +79,38 @@ const Chart = () => {
               labels: {
                 show: true,
               },
+              categories: chartData.map((price) =>
+                new Date(price.time_close * 1000).toLocaleDateString()
+              ),
             },
             yaxis: {
               labels: {
                 show: true,
+                style: {
+                  fontSize: "12px",
+                },
+                formatter: (value) => `$ ${value.toFixed(3)}`,
               },
             },
-            colors: ["#b490ca"],
             fill: {
               type: "gradient",
               gradient: {
-                gradientToColors: ["#5ee7df"],
+                gradientToColors: ["blue"],
                 stops: [0, 100],
               },
             },
+            colors: ["yellow"],
             tooltip: {
               y: {
-                formatter: (value) => `${value.toFixed(3)}`,
+                formatter: (value) => `$ ${value.toFixed(3)}`,
               },
             },
           }}
         />
+      ) : (
+        <Wrapper>No data</Wrapper>
       )}
-    </Container>
+    </Wrapper>
   );
 };
-
 export default Chart;
