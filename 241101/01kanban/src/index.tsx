@@ -9,7 +9,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <RecoilRoot>
-    <ThemeProvider theme={defaultTheme} />
-    <App />
+    <ThemeProvider theme={defaultTheme}>
+      <App />
+    </ThemeProvider>
   </RecoilRoot>
 );
