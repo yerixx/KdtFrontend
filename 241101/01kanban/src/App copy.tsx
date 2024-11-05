@@ -1,58 +1,52 @@
 import React from "react";
 // import { createGlobalStyle } from "styled-components";
 // import { useRecoilValue, useRecoilState } from "recoil";
-// import { hourSelector, minuteState } from "./atoms";
+// import { minuteState, hourSelector } from "./atoms";
 
 // const GlobalStyle = createGlobalStyle`
-// * {
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-// }
+//   * {
+//     margin:0;
+//     padding: 0;
+//     box-sizing: border-box;
+//   }
 
-// ul, li {
-//   list-style: none;
-// }
+//   ul, li {
+//     list-style: none;
+//   }
 
-// a {
-//   text-decoration: none;
-//   color: inherit;
-// }
-
-// body {
-//   /* background: ${({ theme }) => theme.bgColor} ; */
-// }
+//   a {
+//     text-decoration: none;
+//     color: inherit;
+//   }
 // `;
 
 // const App = () => {
-//   const [hour, setHour] = useRecoilState(hourSelector);
+//   const [hours, setHours] = useRecoilState(hourSelector);
 //   const [minutes, setMinutes] = useRecoilState(minuteState);
-
-//   const onMinutesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setMinutes(+e.currentTarget.value);
+//   const onMinutesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//     setMinutes(+event.currentTarget.value);
 //   };
-//   const onHoursChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     setHour(+e.currentTarget.value);
+//   const onHoursChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//     setHours(+event.currentTarget.value);
 //   };
-
 //   return (
-//     <div>
+//     <>
 //       <GlobalStyle />
 //       <div>
 //         <input
-//           type="number"
-//           placeholder="Minutes"
 //           value={minutes}
 //           onChange={onMinutesChange}
+//           type="number"
+//           placeholder="Minutes"
 //         />
 //         <input
-//           type="number"
+//           value={hours}
 //           onChange={onHoursChange}
-//           value={hour}
+//           type="number"
 //           placeholder="Hours"
 //         />
 //       </div>
-//     </div>
+//     </>
 //   );
 // };
 

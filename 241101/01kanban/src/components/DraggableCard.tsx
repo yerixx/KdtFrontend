@@ -2,30 +2,39 @@ import React, { memo } from "react";
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
 
-const Card = styled.div`
-  background: ${({ theme }) => theme.cardColor};
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
-`;
-
-interface DraffableCardProps {
-  todo: string;
-  idx: number;
+interface DraggingProps {
+  isDragging: boolean;
 }
 
-const DraggableCard = ({ todo, idx }: DraffableCardProps) => {
-  // 최적화 필요
-  console.log(todo);
+const Card = styled.div<DraggingProps>`
+  background: ${(props) =>
+    props.isDragging ? "tomato" : props.theme.cardColor};
+  border-radius: 8px;
+  margin-bottom: 5px;
+  padding: 10px;
+  box-shadow: ${(props) =>
+    props.isDragging ? "0px 2px 5px rgba(0, 0, 0, 0.5)" : "none"};
+`;
+
+interface DraggableCardProps {
+  toDoId: number;
+  toDoText: string;
+  index: number;
+}
+
+const DraggableCard = ({ toDoId, toDoText, index }: DraggableCardProps) => {
+  console.log(toDoId);
   return (
-    <Draggable key={todo} draggableId={todo} index={idx}>
-      {(magic) => (
+    // Draggable은 id 값 필수
+    <Draggable key={toDoId} draggableId={String(toDoId)} index={index}>
+      {(magic, snapshot) => (
         <Card
+          isDragging={snapshot.isDragging}
           ref={magic.innerRef}
           {...magic.draggableProps}
           {...magic.dragHandleProps}
         >
-          {todo}
+          {toDoText}
         </Card>
       )}
     </Draggable>
