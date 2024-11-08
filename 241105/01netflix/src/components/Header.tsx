@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { motion, useAnimation, useScroll } from "framer-motion";
-import { Link, useMatch } from "react-router-dom";
+import { Link, useMatch, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const Nav = styled(motion.nav)`
   position: fixed;
@@ -12,7 +13,6 @@ const Nav = styled(motion.nav)`
   justify-content: space-between;
   align-items: center;
   padding: 0 10px;
-  /* background: ${({ theme }) => theme.black.darker}; */
   color: ${({ theme }) => theme.white.darker};
   font-size: 18px;
 `;
@@ -48,9 +48,6 @@ const Item = styled.li`
   position: relative;
   transition: all 0.3s;
   color: ${({ theme }) => theme.red};
-  /* &:hover {
-    color: ${({ theme }) => theme.white.lighter};
-  } */
 `;
 const Circle = styled(motion.span)`
   position: absolute;
@@ -64,7 +61,7 @@ const Circle = styled(motion.span)`
   background: ${({ theme }) => theme.red};
 `;
 
-const Search = styled.span`
+const Search = styled.form`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -76,6 +73,7 @@ const Search = styled.span`
     fill: ${({ theme }) => theme.red};
   }
 `;
+
 const Input = styled(motion.input)`
   transform-origin: right;
   background: transparent;
@@ -98,13 +96,34 @@ const logoVariants = {
   },
 };
 
+interface Form {
+  keyword: string;
+}
+
 const Header = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const homeMatch = useMatch("/");
+  // * = movies 뒤에 오는 모든 경로 true
+  const modalMatch = useMatch("/movies/*");
   const tvMatch = useMatch("/tv");
   const InputAnimation = useAnimation();
   const navAnimation = useAnimation();
   const { scrollY } = useScroll();
+
+  const main = useNavigate();
+
+  const goToMain = () => {
+    main("/");
+  };
+
+  const { register, handleSubmit, setValue } = useForm<Form>();
+  const onValid = (data: Form) => {
+    // register =입력 필드의 변경사항을 추적
+    // handleSubmit=유효성 검사를 자동으로 실행
+    main(`/search?keyword=${data.keyword}`);
+    //setValue = 검색 후 입력창 비우기 등에 활용
+    setValue("keyword", "");
+  };
 
   useEffect(() => {
     scrollY.on("change", () => {
@@ -138,6 +157,7 @@ const Header = () => {
     <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
       <Col>
         <Logo
+          onClick={goToMain}
           variants={logoVariants}
           initial={"normal"}
           whileHover={"active"}
@@ -150,18 +170,21 @@ const Header = () => {
         <Items>
           <Item>
             <Link to={"/"}>
-              Home{homeMatch && <Circle layoutId="circle" />}
+              Home
+              {homeMatch && <Circle layoutId="circle" />}
+              {modalMatch && <Circle layoutId="circle" />}
             </Link>
           </Item>
           <Item>
             <Link to={"/tv"}>
-              Tv Show{tvMatch && <Circle layoutId="circle" />}
+              Tv Show
+              {tvMatch && <Circle layoutId="circle" />}
             </Link>
           </Item>
         </Items>
       </Col>
       <Col>
-        <Search>
+        <Search onSubmit={handleSubmit(onValid)}>
           <motion.svg
             onClick={openSearch}
             animate={{ x: searchOpen ? 0 : 150 }}
@@ -173,6 +196,8 @@ const Header = () => {
             <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
           </motion.svg>
           <Input
+            // register = 폼 입력 필드를 react-hook-form에 등록, 유효성 검사 규칙을 설정할 수 있음, 입력 필드의 변경사항을 추적
+            {...register("keyword", { required: true, minLength: 1 })}
             type="text"
             transition={{ type: "linear" }}
             placeholder="search for movie"
