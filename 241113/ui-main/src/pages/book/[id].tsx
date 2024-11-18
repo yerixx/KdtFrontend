@@ -1,9 +1,29 @@
 //[...id] = 복수의 동적 파라미터 값을 반영하는 path
 import React from "react";
-// import { useRouter } from 'next/router';
 import style from "./[id].module.css";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import fetchOneBook from "@/lib/fetch-one-book";
+import { useRouter } from "next/router";
+import Head from "next/head";
+
+export const getStaticPaths = () => {
+  return {
+    paths: [
+      {
+        params: { id: "1" },
+      },
+      {
+        params: { id: "2" },
+      },
+      {
+        params: { id: "3" },
+      },
+    ],
+    //대비책 false = 없는 페이지로 간주하겠따
+    // fallback: "blocking",
+    fallback: true,
+  };
+};
 
 // const mockBook = {
 //   id: 1,
@@ -17,23 +37,52 @@ import fetchOneBook from "@/lib/fetch-one-book";
 //     "https://shopping-phinf.pstatic.net/main_3888828/38888282618.20230913071643.jpg",
 // };
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   console.log(context);
   const id = Number(context.params?.id);
   const book = await fetchOneBook(id);
+  if (!book) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: { book },
   };
 };
 
-const Index = ({
-  book,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  if (!book) return "책 정보를 가져올 수 없습니다, 다시 시도해주세요";
-  const { id, title, subTitle, description, author, publisher, coverImgUrl } =
-    book;
+const Index = ({ book }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const router = useRouter();
+  if (router.isFallback)
+    return (
+      <>
+        <Head>
+          <title>박필립스 </title>
+          {/* <meta property="og:image" content={coverImgUrl} /> */}
+          <meta property="og:image" content="thumbnail.png" />
+          {/* <meta property="og:title" content={title} /> */}
+          <meta property="og:title" content="한입북수" />
+          {/* <meta property="og:description" content={description} /> */}
+          <meta
+            property="og:description"
+            content="한입북스에 등록된 도서들을 만나보세요 "
+          />
+        </Head>
+        <div>로딩중입니다..</div>
+      </>
+    );
+
+  if (router.isFallback) {
+    return "로딩중입니다!";
+  }
+  if (!book) {
+    return (
+      <div className={style.errorMessage}>
+        <p>책 정보를 가져올 수 없습니다. 다시 시도해주세요.</p>
+      </div>
+    );
+  }
+  const { title, subTitle, description, coverImgUrl } = book;
   // const router = useRouter();
   // const { id } = router.query;
   // // console.log(router);
@@ -43,17 +92,25 @@ const Index = ({
 
   // console.log(id);
   return (
-    <div className={style.container}>
-      <div
-        className={style.cover_img_container}
-        style={{ backgroundImage: `url("${coverImgUrl}")` }}
-      >
-        <img src={coverImgUrl} alt="bookImg" />
+    <>
+      <Head>
+        <title>{title}</title>
+        <meta property="og:image" content={coverImgUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+      </Head>
+      <div className={style.container}>
+        <div
+          className={style.cover_img_container}
+          style={{ backgroundImage: `url("${coverImgUrl}")` }}
+        >
+          <img src={coverImgUrl} alt="bookImg" />
+        </div>
+        <div className={style.title}>{title}</div>
+        <div className={style.subTitle}>{subTitle}</div>
+        <div className={style.description}>{description}</div>
       </div>
-      <div className={style.title}>{title}</div>
-      <div className={style.subTitle}>{subTitle}</div>
-      <div className={style.description}>{description}</div>
-    </div>
+    </>
   );
 };
 

@@ -16,7 +16,7 @@ const BookItem = ({
 
   return (
     <Link className={style.container} href={`/book/${id}`}>
-      <img src={coverImgUrl} />
+      <img src={coverImgUrl} alt="img" />
 
       <div>
         <div className={style.title}>{title}</div>
