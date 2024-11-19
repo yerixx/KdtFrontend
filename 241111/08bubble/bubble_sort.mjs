@@ -11,10 +11,14 @@ const bubbleSort = (arr) => {
   }
 };
 
+// (n-1) + (n-2) + (n-3) ... + 1
+// 등차 수열
+
 console.log("===배열 정렬 전 ===");
 console.log(arr);
 
 bubbleSort(arr);
+
 console.log("===배열 정렬 후 ===");
 console.log(arr);
 
