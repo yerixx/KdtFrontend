@@ -1,24 +1,33 @@
-//클라이언트라고 설명해줘야 알아먹음
 "use client";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import style from "./searchbar.module.css";
 
 const Searchbar = () => {
   const router = useRouter();
-  const [search, setState] = useState("");
+  const searchParams = useSearchParams();
+  const [search, setSeach] = useState("");
+
+  const q = searchParams.get("q");
+
+  useEffect(() => {
+    setSeach(q || "");
+  }, [q]);
 
   const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setState(e.target.value);
+    setSeach(e.target.value);
   };
-  const onSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!search || q === search) return;
     router.push(`/search?q=${search}`);
   };
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className={style.container}>
         <input value={search} type="text" onChange={onChangeSearch} />
-        <input type="submit" value={"검색"} />
+        <input type="submit" value="검색" />
       </form>
     </div>
   );

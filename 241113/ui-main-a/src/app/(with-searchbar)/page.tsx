@@ -1,25 +1,51 @@
-"use client";
 import styles from "./page.module.css";
-import ClientComponent from "../../components/client-component";
-export default function Home() {
-  // console.log("컴포넌트 실행!");
-  // const [state, setState] = useState("");
-  // useEffect(() => {
-  //   console.log("useEffect 실행!");
-  // }, []);
-  // console.log("Home 컴포넌트 실행!");
-  // const APIKEY = "12345";
-  // useEffect와 useState를 쓰지 않는 걸 추천 (디폴트가 서버 컴포넌트 페이지다, 기본적으로 클라이언트는 쓰지 않길 권장)
-  // 그렇다면 useEffect와 useState를 쓰려면?
-  // useEffect와 useState를 쓰려면 getServerSideProps를 써야한다
-  // getServerSideProps는 서버에서만 동작하는 함수이다
-  // useEffect(() => {}, []);
+import BookItem from "@/components/book-item";
+import books from "@/mock/books.json";
+import { BookData } from "@/types";
+
+const RecoBooks = async () => {
+  const response = await fetch("http://localhost:12345/book/random");
+  if (!response.ok) {
+    return <div>오류가 발생했습니다...</div>;
+  }
+  const recoBooks: BookData[] = await response.json();
   return (
-    <div className={styles.page}>
-      index page
-      <ClientComponent>
-        <></>
-      </ClientComponent>
+    <div>
+      {recoBooks.map((book) => (
+        <BookItem key={book.id} {...book} />
+      ))}
     </div>
   );
-}
+};
+
+const AllBooks = async () => {
+  const response = await fetch("http://localhost:12345/book");
+  if (!response.ok) {
+    return <div>오류가 발생했습니다...</div>;
+  }
+  const allBooks: BookData[] = await response.json();
+  return (
+    <div>
+      {allBooks.map((book) => (
+        <BookItem key={book.id} {...book} />
+      ))}
+    </div>
+  );
+};
+
+const Home = async () => {
+  return (
+    <div className={styles.container}>
+      <section>
+        <h3>지금 추천하는 도서</h3>
+        <RecoBooks />
+      </section>
+      <section>
+        <h3>등록된 모든 도서</h3>
+        <AllBooks />
+      </section>
+    </div>
+  );
+};
+
+export default Home;
