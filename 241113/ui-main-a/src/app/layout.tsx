@@ -6,12 +6,14 @@ import { BookData } from "@/types";
 
 const Footer = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`,
+    //동적
+    { cache: "force-cache" }
   );
   if (!response.ok) {
     return <footer>제작 @yerimp</footer>;
   }
-  const books: BookData = await response.json();
+  const books: BookData[] = await response.json();
   const bookCount = books.length;
   return (
     <footer>

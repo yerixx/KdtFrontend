@@ -1,6 +1,13 @@
 import styles from "./page.module.css";
-import BookItem from "@/components/book-item";
 import { BookData } from "@/types";
+import BookItem from "@/components/book-item";
+
+export const dynamic = "force-static";
+//특정 페이지의 유형을 강제로 staic, dynamic 페이지로 설정하도록 하는 옵션들
+//1. auto : 페이지 컴포넌트의 기본값을 보장 하겠다 => 기본은 강제 하지 않음
+//2. force-dynamic : 페이지를 강제적으로 dynamic 페이지로 설정
+//3. force-static :페이지를 강제적으로 static 페이지로 설정
+//4. error
 
 const RecoBooks = async () => {
   const response = await fetch(
@@ -27,12 +34,18 @@ const RecoBooks = async () => {
 const AllBooks = async () => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`,
-    { cache: "no-store" }
+    //동적
+    { cache: "force-cache" }
+    //정적
+    // { cache: "no-store" }
   );
+
   if (!response.ok) {
     return <div>오류가 발생했습니다...</div>;
   }
+
   const allBooks: BookData[] = await response.json();
+
   return (
     <div>
       {allBooks.map((book) => (
