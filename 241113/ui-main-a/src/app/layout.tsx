@@ -11,13 +11,13 @@ const Footer = async () => {
     { cache: "force-cache" }
   );
   if (!response.ok) {
-    return <footer>제작 @yerimp</footer>;
+    return <footer>제작 @rimson</footer>;
   }
   const books: BookData[] = await response.json();
   const bookCount = books.length;
   return (
     <footer>
-      <div>제작 @yerimp</div>
+      <div>제작 @rimson</div>
       <div>{bookCount}개의 도서가 제작되었습니다.</div>
     </footer>
   );

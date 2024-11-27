@@ -47,7 +47,7 @@ const App = () => {
   const onDragEnd = (info: DropResult) => {
     console.log(info);
     // console.log(destination, draggableId, source);
-    const { destination, source, draggableId } = info;
+    const { destination, source } = info;
     if (!destination) return;
     if (destination.droppableId === source.droppableId) {
       setToDos((oldToDos) => {

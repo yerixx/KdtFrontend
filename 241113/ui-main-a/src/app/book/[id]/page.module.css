@@ -1,41 +1,46 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  & > .cover_img_container {
-    position: relative;
+  gap: 50px;
+  & > section {
     display: flex;
-    justify-content: center;
-    padding: 20px;
-    background: center/cover no-repeat;
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    gap: 10px;
+    & > .cover_img_container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      background: center/cover no-repeat;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+      }
+      & > img {
+        z-index: 1;
+        height: 400px;
+      }
     }
-    & > img {
-      z-index: 1;
-      height: 400px;
+    & > .title {
+      font-size: large;
+      font-weight: bold;
     }
-  }
-  & > .title {
-    font-size: large;
-    font-weight: bold;
-  }
-  & > .subTitle {
-    color: gray;
-  }
-  & > .author {
-    color: gray;
-  }
-  & > .description {
-    background: rgb(245, 245, 245);
-    padding: 15px;
-    line-height: 1.8;
-    border-radius: 8px;
+    & > .subTitle {
+      color: gray;
+    }
+    & > .author {
+      color: gray;
+    }
+    & > .description {
+      background: rgb(245, 245, 245);
+      padding: 15px;
+      line-height: 1.8;
+      border-radius: 8px;
+    }
   }
 }
