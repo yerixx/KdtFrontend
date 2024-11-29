@@ -35,10 +35,12 @@ const reducer = (state, action) => {
       return [action.newItem, ...state];
     }
     case "UPDATE": {
-      //전개연산자 내용 이해하기
       return state.map((it) =>
         it.id === action.targetId ? { ...it, isDone: !it.isDone } : it
       );
+    }
+    case "EDIT": {
+      return [...state];
     }
     case "DELETE": {
       return state.filter((it) => it.id !== action.targetId);
