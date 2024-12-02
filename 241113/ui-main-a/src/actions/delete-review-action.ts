@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use server";
 import { revalidatePath } from "next/cache";
 export const deleteReviewAction = async (_: any, formData: FormData) => {
-  const bookId = formData.get("bookId")?.toString();
+  // const bookId = formData.get("bookId")?.toString();
   const reviewId = formData.get("reviewId");
   if (!reviewId) {
     return {

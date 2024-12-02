@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 //해당 함수가 Server Action의 기능을 가지게 해줌
 "use server";
 import delay from "@/util/delay";

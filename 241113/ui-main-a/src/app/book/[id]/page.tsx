@@ -2,14 +2,14 @@ import React from "react";
 import style from "./page.module.css";
 import { notFound } from "next/navigation";
 import ReviewEditor from "@/components/review-editor";
-import { ReviewData } from "@/types";
+import { BookData, ReviewData } from "@/types";
 import ReviewItem from "@/components/review-item";
 
 // export const dynamicParams = false;
 
 //Static Parameter을 생성하는 함수!!
 
-const Booktail = async ({ bookId }: { bookId: String }) => {
+const Booktail = async ({ bookId }: { bookId: string }) => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${bookId}`,
     { cache: "force-cache" }
@@ -67,6 +67,32 @@ const ReviewList = async ({ bookId }: { bookId: string }) => {
       ))}
     </section>
   );
+};
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) => {
+  const { id } = await params;
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${id}`,
+    { cache: "force-cache" }
+  );
+
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  const book: BookData = await response.json();
+  return {
+    title: `${book.title} - 한입북스`,
+    description: `${book.description}`,
+    openGraph: {
+      title: `${book.title} - 한입북스`,
+      description: `${book.description}`,
+      images: [book.coverImgUrl],
+    },
+  };
 };
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {

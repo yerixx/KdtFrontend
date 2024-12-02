@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import { BookData } from "@/types";
 import BookItem from "@/components/book-item";
 import delay from "@/util/delay";
+import { Metadata } from "next";
 
 const SearchResult = async ({ q }: { q: string }) => {
   // const { q } = await searchParams;
@@ -22,6 +23,22 @@ const SearchResult = async ({ q }: { q: string }) => {
       ))}
     </div>
   );
+};
+export const generateMetadata = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ q: string }>;
+}): Promise<Metadata> => {
+  const { q } = await searchParams;
+  return {
+    title: `${q}:한입 북스 검색`,
+    description: `${q}의 검색 결과 입니다.`,
+    openGraph: {
+      title: `${q}: 한입 북스 검색`,
+      description: `${q}의 검색 결과 입니다.`,
+      images: ["/thumbnail.png"],
+    },
+  };
 };
 
 const Page = async ({
